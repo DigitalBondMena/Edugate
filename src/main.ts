@@ -3,8 +3,6 @@ const loadFontAwesome = () =>
   import("@fortawesome/fontawesome-free/css/all.min.css");
 
 import "./style/rtl.css";
-import { initSwiperAbout } from "./ts/init-swiper-about-us";
-import { initSwiperHome } from "./ts/init-swiper-home";
 import { attachLangToggle, initLangFromPath } from "./ts/lang";
 import { initNavbar } from "./ts/navbar";
 
@@ -193,12 +191,14 @@ document.addEventListener("DOMContentLoaded", () => {
     path === "/ar" ||
     path === "/"
   ) {
-    scheduleTask(() => {
-      initSwiperHome();
+    scheduleTask(async() => {
+      const module =  await import("./ts/init-swiper-home");
+      module.initSwiperHome();
     });
   } else if (path.includes("about-us")) {
-    scheduleTask(() => {
-      initSwiperAbout();
+    scheduleTask(async() => {
+      const module = await import("./ts/init-swiper-about-us");
+      module.initSwiperAbout();
     });
   }
 

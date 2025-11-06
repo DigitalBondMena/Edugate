@@ -16,30 +16,19 @@ export function initSwiperHome(): void {
     const swiperElement = document.querySelector(".mySwiper");
     if (swiperElement) {
       const swiper = new Swiper(".mySwiper", {
-        direction: "vertical",
-        slidesPerView: 3,
-        spaceBetween: 10,
-        observer: true,
-        observeParents: true,
-        updateOnWindowResize: true,
-        watchSlidesProgress: true,
+        slidesPerView: 1,
+        loop:true,
+        updateOnWindowResize:true,
+        breakpoints:{
+          1024:{
+            direction: "vertical",
+            slidesPerView: 3,
+            spaceBetween: 150,
+          }
+        }
       });
-
-      const prevBtn = document.getElementById("prevBtn");
-      const nextBtn = document.getElementById("nextBtn");
       const prevBtnLg = document.getElementById("prevBtnLg");
       const nextBtnLg = document.getElementById("nextBtnLg");
-      const isRtl = document.documentElement.dir === "rtl";
-
-      if (prevBtn && nextBtn) {
-        if (isRtl) {
-          prevBtn.addEventListener("click", () => swiper.slideNext());
-          nextBtn.addEventListener("click", () => swiper.slidePrev());
-        } else {
-          prevBtn.addEventListener("click", () => swiper.slidePrev());
-          nextBtn.addEventListener("click", () => swiper.slideNext());
-        }
-      }
 
       if (prevBtnLg && nextBtnLg) {
         prevBtnLg.addEventListener("click", () => swiper.slidePrev());

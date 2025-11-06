@@ -75,7 +75,9 @@
     @apply absolute inset-0 bg-primary-text-color/70;
     z-index: 1;
   }
-
+  .mySwiper {
+  @apply w-full
+}
   .nav-link-underline {
     @apply relative inline-block;
     &::after {
