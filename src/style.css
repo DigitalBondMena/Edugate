@@ -2,7 +2,9 @@
 @import "tailwindcss";
 @import "./style/base.css";
 @import "./style/tailwind.css";
-
+:root {
+  --fa-font-display: swap;
+}
 /* ==================== Language Dropdown Animations ==================== */
 #language-dropdown-menu {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
