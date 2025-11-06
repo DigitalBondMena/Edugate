@@ -6,15 +6,18 @@ import "./style/rtl.css";
 import { attachLangToggle, initLangFromPath } from "./ts/lang";
 import { initNavbar } from "./ts/navbar";
 
+const closeLoadingScreen = () => {
+  const loadingScreen = document.getElementById("loading-screen");
+    if (loadingScreen) {
+      loadingScreen.remove();
+    }
+    document.body.style.overflow = 'auto'
+}
 // BFCache: Handle page restoration
 window.addEventListener("pageshow", (event: PageTransitionEvent) => {
   if (event.persisted) {
     // Reinitialize any necessary components
-    const loadingScreen = document.getElementById("loading-screen");
-    if (loadingScreen) {
-      loadingScreen.classList.add("hidden");
-    }
-
+    closeLoadingScreen()
     // Re-set active navbar link when page is restored from cache
     initNavbar();
   }
@@ -22,18 +25,7 @@ window.addEventListener("pageshow", (event: PageTransitionEvent) => {
 
 // Hide loading screen when page is fully loaded
 window.addEventListener("load", () => {
-  const loadingScreen = document.getElementById("loading-screen");
-  if (loadingScreen) {
-    // Use requestAnimationFrame for smooth transition
-    requestAnimationFrame(() => {
-      loadingScreen.classList.add("hidden");
-      // Remove from DOM after transition completes to free up memory
-      setTimeout(() => {
-        loadingScreen.remove();
-      }, 300);
-    });
-  }
-
+  closeLoadingScreen()
   // Load Font Awesome after page load
   loadFontAwesome();
 });
