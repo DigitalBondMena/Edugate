@@ -1,0 +1,34 @@
+---
+alwaysApply: true
+---
+
+# Cursor Rules — Edugate Project
+
+## 1. Purpose
+
+These rules define how the cursor should behave across the project for a consistent and accessible user experience.
+
+## 2. General Cursor Style
+
+- Default cursor for all elements: `cursor: default`
+- Interactive elements (buttons, links, clickable cards): `cursor: pointer`
+- Disabled elements: `cursor: not-allowed`
+- Text input or editable area: `cursor: text`
+
+## 3. Custom Cursor (Optional)
+
+If a design later requires a custom cursor:
+
+- Implement it as a small reusable module under `/scripts/cursor/`
+- Avoid using large libraries; only lightweight TS logic
+- Styles must remain accessible and not hide the native cursor on touch devices
+
+## 4. Tailwind Integration
+
+When using TailwindCSS v4:
+
+```html
+<button class="cursor-pointer">Click me</button>
+<p class="cursor-text">Editable area</p>
+<div class="cursor-not-allowed opacity-50">Disabled</div>
+```

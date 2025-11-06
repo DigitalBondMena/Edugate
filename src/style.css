@@ -1,0 +1,554 @@
+@import "./style/font.css";
+@import "tailwindcss";
+@import "./style/base.css";
+@import "./style/tailwind.css";
+
+/* ==================== Language Dropdown Animations ==================== */
+#language-dropdown-menu {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top right;
+  position: absolute;
+  top: 100%;
+  min-width: 180px;
+  max-width: 200px;
+  z-index: 50;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 0.2rem 0;
+}
+
+/* Dropdown closed state */
+#language-dropdown-menu.dropdown-closed {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  pointer-events: none;
+}
+
+/* Dropdown open state */
+#language-dropdown-menu.dropdown-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Force ul to be vertical */
+#language-dropdown-menu ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+/* Force li to be full width */
+#language-dropdown-menu ul li {
+  width: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Language dropdown items styling */
+#language-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* ==================== End Language Dropdown Animations ==================== */
+
+/* Swiper */
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Offcanvas Menu Scrolling */
+#mobile-menu {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+#mobile-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+#mobile-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#mobile-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+#mobile-menu::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+/* Offcanvas Dropdown Improvements */
+#mobile-menu .group\/menui-1,
+#mobile-menu .group\/menui-2,
+#mobile-menu .group\/menui-3 {
+  position: relative;
+}
+
+#mobile-menu .group\/menui-1 > a,
+#mobile-menu .group\/menui-2 > a,
+#mobile-menu .group\/menui-3 > a {
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#mobile-menu .group\/menui-1 > a svg,
+#mobile-menu .group\/menui-2 > a svg,
+#mobile-menu .group\/menui-3 > a svg {
+  transition: transform 0.3s ease;
+}
+
+#mobile-menu .group\/menui-1.active > a svg,
+#mobile-menu .group\/menui-2.active > a svg,
+#mobile-menu .group\/menui-3.active > a svg {
+  transform: rotate(180deg);
+}
+
+/* Nested ul in offcanvas */
+#mobile-menu .group\/menui-1 ul,
+#mobile-menu .group\/menui-2 ul,
+#mobile-menu .group\/menui-3 ul {
+  position: static !important;
+  transform: none !important;
+  width: auto !important;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+#mobile-menu .group\/menui-1 ul.show,
+#mobile-menu .group\/menui-2 ul.show,
+#mobile-menu .group\/menui-3 ul.show {
+  max-height: 300px;
+  opacity: 1;
+}
+
+/* Better touch targets */
+#mobile-menu .group\/menui-1 ul li a,
+#mobile-menu .group\/menui-2 ul li a,
+#mobile-menu .group\/menui-3 ul li a {
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Add smooth animation for dropdown items */
+#mobile-menu .group\/menui-1 ul li,
+#mobile-menu .group\/menui-2 ul li,
+#mobile-menu .group\/menui-3 ul li {
+  animation: slideIn 0.2s ease forwards;
+  opacity: 0;
+}
+
+#mobile-menu .group\/menui-1 ul.show li,
+#mobile-menu .group\/menui-2 ul.show li,
+#mobile-menu .group\/menui-3 ul.show li {
+  opacity: 1;
+}
+
+#mobile-menu .group\/menui-1 ul.show li:nth-child(1),
+#mobile-menu .group\/menui-2 ul.show li:nth-child(1),
+#mobile-menu .group\/menui-3 ul.show li:nth-child(1) {
+  animation-delay: 0.05s;
+}
+#mobile-menu .group\/menui-1 ul.show li:nth-child(2),
+#mobile-menu .group\/menui-2 ul.show li:nth-child(2),
+#mobile-menu .group\/menui-3 ul.show li:nth-child(2) {
+  animation-delay: 0.1s;
+}
+#mobile-menu .group\/menui-1 ul.show li:nth-child(3),
+#mobile-menu .group\/menui-2 ul.show li:nth-child(3),
+#mobile-menu .group\/menui-3 ul.show li:nth-child(3) {
+  animation-delay: 0.15s;
+}
+#mobile-menu .group\/menui-1 ul.show li:nth-child(4),
+#mobile-menu .group\/menui-2 ul.show li:nth-child(4),
+#mobile-menu .group\/menui-3 ul.show li:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Desktop Navigation Dropdown Improvements */
+@media (min-width: 1700px) {
+  #navbar-items .group\/menui-1 ul,
+  #navbar-items .group\/menui-2 ul,
+  #navbar-items .group\/menui-3 ul {
+    min-width: 200px;
+    animation: fadeInDown 0.3s ease;
+  }
+
+  #navbar-items .group\/menui-1 ul li,
+  #navbar-items .group\/menui-2 ul li,
+  #navbar-items .group\/menui-3 ul li {
+    position: relative;
+  }
+
+  #navbar-items .group\/menui-1 ul li a,
+  #navbar-items .group\/menui-2 ul li a,
+  #navbar-items .group\/menui-3 ul li a {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.loader-logo {
+  animation: fadeInScale 0.6s ease-in-out;
+}
+
+.logo-img {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.loader-animation {
+  perspective: 1000px;
+}
+
+.book {
+  position: relative;
+  width: 80px;
+  height: 60px;
+  transform-style: preserve-3d;
+  animation: bookFlip 2s infinite ease-in-out;
+}
+
+.book-page {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.book-page:nth-child(1) {
+  left: 0;
+  transform-origin: right center;
+  animation: pageFlip1 2s infinite ease-in-out;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.book-page:nth-child(2) {
+  left: 20px;
+  animation: pageFlip2 2s infinite ease-in-out;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.book-page:nth-child(3) {
+  right: 0;
+  transform-origin: left center;
+  animation: pageFlip3 2s infinite ease-in-out;
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+}
+
+.loader-text {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.loader-text h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.loader-text p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.loader-spinner {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.spinner-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.spinner-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.spinner-dot:nth-child(2) {
+  animation-delay: -0.16s;
+  background-color: #10b981;
+}
+
+.spinner-dot:nth-child(3) {
+  background-color: #059669;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bookFlip {
+  0%,
+  100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes pageFlip1 {
+  0%,
+  100% {
+    transform: rotateY(0deg);
+  }
+  25%,
+  75% {
+    transform: rotateY(-180deg);
+  }
+}
+
+@keyframes pageFlip2 {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes pageFlip3 {
+  0%,
+  100% {
+    transform: rotateY(0deg);
+  }
+  25%,
+  75% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* Floating Action Buttons */
+.fixed-actions {
+  position: fixed;
+  bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  z-index: 1000;
+}
+/* Floating Action Buttons */
+[dir="rtl"] .fixed-actions {
+  right: 30px;
+}
+/* Floating Action Buttons */
+[dir="ltr"] .fixed-actions {
+  left: 30px;
+}
+
+.whatsapp-btn,
+.scroll-top-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.whatsapp-btn.show,
+.scroll-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* WhatsApp Button - Green */
+.whatsapp-btn {
+  background-color: #25d366;
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128c7e;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+/* Scroll to Top Button - Primary Color */
+.scroll-top-btn {
+  background-color: #f64148;
+  color: white;
+  border: none;
+}
+
+.scroll-top-btn:hover {
+  background-color: #f64148;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(246, 65, 72, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fixed-actions {
+    bottom: 20px;
+    right: 20px;
+    gap: 12px;
+  }
+
+  .whatsapp-btn,
+  .scroll-top-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .whatsapp-btn svg,
+  .scroll-top-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Animation for buttons */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

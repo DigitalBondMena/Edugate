@@ -1,0 +1,111 @@
+@theme {
+  /* Text Variables */
+  --text-main-title: calc(2.8125rem * 1); /* 45px */
+  --text-sub-title: calc(1.25rem * 1); /* 20px */
+  --text-description: calc(1.125rem * 1); /* 18px */
+  /* Colors Variables */
+  --color-primary-text-color: #1cb280;
+  --color-alternate-text-color: #839992;
+  --color-active-color: #f64148;
+}
+
+@layer base {
+  body,
+  html {
+    font-family: "Alexandria", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    position: relative;
+    height: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-transform: capitalize;
+  }
+
+  :root {
+    font-size: 16px;
+  }
+
+  @media (max-width: 499px) {
+    :root {
+      font-size: 13px;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+}
+@utility container-fluid {
+  margin-inline: auto;
+}
+@layer components {
+  .main-title-ui {
+    @apply text-main-title w-fit font-bold text-primary-text-color relative mb-5;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      height: 5px;
+      background-color: var(--color-primary-text-color);
+      border-radius: 10px;
+      transition: left 0.3s, right 0.3s;
+    }
+  }
+
+  /* [dir="rtl"] .main-title-ui::before {
+    left: auto;
+    right: 0;
+  } */
+
+  .main-description-ui {
+    @apply text-description text-alternate-text-color text-justify;
+  }
+
+  .custom-overlay {
+    @apply absolute inset-0 bg-primary-text-color/70;
+    z-index: 1;
+  }
+
+  .nav-link-underline {
+    @apply relative inline-block;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: var(--color-active-color);
+      transition: width 0.3s ease-in-out;
+    }
+    &:hover::after,
+    &.active::after {
+      width: 100%;
+    }
+  }
+
+  .nav-link-underline-offcanvas {
+    @apply relative inline-block;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 30px;
+
+    &:hover {
+      color: #fff !important;
+      background-color: var(--color-primary-text-color);
+    }
+    &.active-link {
+      color: #fff !important;
+      background-color: var(--color-primary-text-color);
+    }
+  }
+}
