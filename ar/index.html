@@ -34,7 +34,7 @@
       type="font/woff2"
       crossorigin
     />
-
+    <link rel="preload" href="/images/home/hero/hero.webp" as="image">
     <!-- Load main CSS asynchronously -->
     <link
       rel="preload"
@@ -738,7 +738,7 @@
                 alt="Edugate - Your Gateway to Education"
                 class="absolute inset-0 w-full h-full object-cover"
                 fetchpriority="high"
-                decoding="async"
+                decoding="sync"
                 width="1920"
                 height="1080"
               />
