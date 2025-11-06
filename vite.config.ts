@@ -105,6 +105,8 @@ export default defineConfig({
     // Add headers for development server
     headers: {
       "Cache-Control": "no-cache",
+      "Cache-Control-Font": "public, max-age=31536000, immutable",
+      "Link": "</assets/fonts/fa-solid-*.woff2>; rel=preload; as=font; type=font/woff2; crossorigin"
     },
   },
   // Optimize dependencies
