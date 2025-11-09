@@ -34,8 +34,9 @@
       type="font/woff2"
       crossorigin
     />
-    <!-- <link rel="preload" fetchpriority="high" href="/images/home/hero/hero.webp" as="image" /> -->
-    <!-- Load main CSS asynchronously -->
+<link rel="preload" as="image" href="/images/home/hero/hero-1600.jpg" media="(min-width: 1001px)">
+<link rel="preload" as="image" href="/images/home/hero/hero-1000.jpg" media="(max-width: 1000px)">
+<link rel="preload" as="image" href="/images/home/hero/hero-600.jpg"  media="(max-width: 600px)">    <!-- Load main CSS asynchronously -->
     <link
       rel="preload"
       href="/src/style.css"
@@ -749,7 +750,6 @@
             >
               <!-- Hero Image with High Priority -->
               <picture>
-  <!-- موبايل -->
   <source
     media="(max-width: 600px)"
     srcset="/images/home/hero/hero-600.jpg"
@@ -1285,6 +1285,7 @@
                       src="/images/home/whyus/whyus.png"
                       alt="Why Choose Us Illustration"
                       loading="lazy"
+                      decoding="async"
                     />
                   </figure>
                 </div>
@@ -1366,6 +1367,7 @@
                             alt="محمد أحمد"
                             class="w-full h-full object-cover"
                             loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       </div>
@@ -1398,6 +1400,7 @@
                             alt="محمد أحمد"
                             class="w-full h-full object-cover"
                             loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       </div>
@@ -1429,6 +1432,7 @@
                             alt="محمد أحمد"
                             class="w-full h-full object-cover"
                             loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       </div>
@@ -2022,6 +2026,7 @@
               <img
                 class="h-6"
                 loading="lazy"
+                decoding="async"
                 width="31"
                 height="24"
                 src="/images/footer/digital-bond-logo.webp"
