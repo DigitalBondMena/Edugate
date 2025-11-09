@@ -1,6 +1,4 @@
-// Lazy load Font Awesome only
-const loadFontAwesome = () =>
-  import("@fortawesome/fontawesome-free/css/all.min.css");
+
 
 import "./style/rtl.css";
 import { attachLangToggle, initLangFromPath } from "./ts/lang";
@@ -26,8 +24,6 @@ window.addEventListener("pageshow", (event: PageTransitionEvent) => {
 // Hide loading screen when page is fully loaded
 window.addEventListener("load", () => {
   closeLoadingScreen()
-  // Load Font Awesome after page load
-  loadFontAwesome();
 });
 
 // Floating Action Buttons - Show/Hide on Scroll with Performance Optimization

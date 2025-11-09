@@ -56,9 +56,6 @@ export default defineConfig({
             if (id.includes("swiper")) {
               return "vendor-swiper";
             }
-            if (id.includes("@fortawesome")) {
-              return "vendor-fontawesome";
-            }
             // Group other small vendors together
             return "vendor-other";
           }
@@ -105,14 +102,11 @@ export default defineConfig({
     // Add headers for development server
     headers: {
       "Cache-Control": "no-cache",
-      "Cache-Control-Font": "public, max-age=31536000, immutable",
-      "Link": "</assets/fonts/fa-solid-*.woff2>; rel=preload; as=font; type=font/woff2; crossorigin"
     },
   },
   // Optimize dependencies
   optimizeDeps: {
     include: ["swiper"],
-    exclude: ["@fortawesome/fontawesome-free"], // Lazy loaded,  removed
     esbuildOptions: {
       target: "es2020",
     },
