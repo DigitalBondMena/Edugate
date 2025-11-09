@@ -2,6 +2,11 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/src/style.css"
+      as="style"
+    />
     <link rel="icon" type="image/svg+xml" href="/images/navbar/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -27,18 +32,42 @@
     <meta name="theme-color" content="#1CB280" />
 
     <!-- Preload critical resources -->
-<link rel="preload" as="image" href="/images/home/hero/hero-1600.jpg" media="(min-width: 1001px)">
-<link rel="preload" as="image" href="/images/home/hero/hero-1000.jpg" media="(max-width: 1000px)">
-<link rel="preload" as="image" href="/images/home/hero/hero-600.jpg"  media="(max-width: 600px)">    <!-- Load main CSS asynchronously -->
+    
+    <link rel="stylesheet" decoding="async" href="/src/style.css" />
     <link
       rel="preload"
-      href="/src/style.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      as="font"
+      href="/fonts/alexandria/Alexandria-Regular.woff"
+      type="font/woff"
+      crossorigin
     />
-    <noscript><link rel="stylesheet" href="/src/style.css" /></noscript>
-    <!-- Critical CSS to prevent FOUC -->
-    <style>
+    <link
+      rel="preload"
+      as="font"
+      href="/fonts/alexandria/Alexandria-Regular.woff2"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/home/hero/hero-1600.jpg"
+      media="(min-width: 1600px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/home/hero/hero-1000.jpg"
+      media="(max-width: 1000px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/home/hero/hero-600.jpg"
+      media="(max-width: 600px)"
+    />
+    <!-- Load main CSS asynchronously -->
+     <style>
       /* Loading screen critical styles */
       .loading-screen {
         position: fixed;
@@ -68,7 +97,6 @@
         overflow: hidden;
       }
     </style>
-
     <title>Edugate - بوابتك للتعليم الدولي</title>
   </head>
 
@@ -82,7 +110,7 @@
             alt="Edugate Logo"
             class="logo-img"
             width="120"
-            height="120"
+            height="39"
           />
         </div>
         <div class="loader-animation">
@@ -140,7 +168,9 @@
               >
                 <!-- Flag Icon -->
                 <svg
-                  class="h-3.5 w-3.5 rounded-full me-2"
+                  class="rounded-full me-2"
+                  height="14"
+                  width="14"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                 >
@@ -743,34 +773,33 @@
             >
               <!-- Hero Image with High Priority -->
               <picture>
-  <source
-    media="(max-width: 600px)"
-    srcset="/images/home/hero/hero-600.jpg"
-  />
+                <source
+                  media="(max-width: 600px)"
+                  srcset="/images/home/hero/hero-600.jpg"
+                />
 
-  <!-- تابلت -->
-  <source
-    media="(max-width: 1000px)"
-    srcset="/images/home/hero/hero-1000.jpg"
-  />
+                <!-- تابلت -->
+                <source
+                  media="(max-width: 1000px)"
+                  srcset="/images/home/hero/hero-1000.jpg"
+                />
 
-  <!-- ديسكتوب -->
-  <source
-    media="(min-width: 1001px)"
-    srcset="/images/home/hero/hero-1600.jpg"
-  />
+                <!-- ديسكتوب -->
+                <source
+                  media="(min-width: 1001px)"
+                  srcset="/images/home/hero/hero-1600.jpg"
+                />
 
-  <img
-    src="/images/home/hero/hero-1600.jpg"
-    alt="Edugate - Your Gateway to Education"
-    class="absolute inset-0 w-full h-full object-cover"
-    fetchpriority="high"
-    decoding="sync"
-    width="1920"
-    height="1080"
-  />
-</picture>
-
+                <img
+                  src="/images/home/hero/hero-1600.jpg"
+                  alt="Edugate - Your Gateway to Education"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  fetchpriority="high"
+                  decoding="sync"
+                  width="1920"
+                  height="1080"
+                />
+              </picture>
 
               <!-- Overlay Layer -->
               <div class="custom-overlay"></div>
@@ -1052,15 +1081,29 @@
                 class="nav flex lg:flex-col gap-5 items-center justify-center h-full"
               >
                 <!-- Previous Button (Vertical - Up) -->
-                <i
-                  class="fa-solid rotate-90 lg:rotate-0 fa-arrow-up text-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl hidden"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                  class="fa-solid rotate-90 lg:rotate-0 fa-arrow-up fill-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl"
                   id="prevBtnLg"
-                ></i>
+                  width="25"
+                >
+                  <path
+                    d="M214.6 17.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 117.3 160 488c0 17.7 14.3 32 32 32s32-14.3 32-32l0-370.7 105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+                  />
+                </svg>
                 <!-- Next Button (Vertical - Down) -->
-                <i
-                  class="fa-solid rotate-90 lg:rotate-0 fa-arrow-down text-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl hidden"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                  width="25"
                   id="nextBtnLg"
-                ></i>
+                  class="fa-solid rotate-90 lg:rotate-0 fa-arrow-down fill-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl"
+                >
+                  <path
+                    d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7-105.4-105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
@@ -1273,12 +1316,12 @@
                 </div>
 
                 <div class="biger-image h-full">
-                    <img
-                      src="/images/home/whyus/whyus.png"
-                      alt="Why Choose Us Illustration"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                  <img
+                    src="/images/home/whyus/whyus.png"
+                    alt="Why Choose Us Illustration"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>

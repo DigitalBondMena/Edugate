@@ -59,6 +59,7 @@ export default defineConfig({
             // Group other small vendors together
             return "vendor-other";
           }
+
         },
         // Optimize chunk file names for better caching
         chunkFileNames: "assets/js/[name]-[hash].js",
@@ -90,9 +91,6 @@ export default defineConfig({
     sourcemap: false,
     // Improve build performance
     reportCompressedSize: false,
-
-    // Enable CSS code splitting
-    cssCodeSplit: true,
 
     // Improve asset inlining threshold
     assetsInlineLimit: 4096, // 4KB limit for base64 inlining
