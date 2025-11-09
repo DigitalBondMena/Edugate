@@ -27,8 +27,14 @@
     <meta name="theme-color" content="#1CB280" />
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="/assets/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" fetchpriority="high" href="/images/home/hero/hero.webp" as="image" />
+    <link
+      rel="preload"
+      href="/assets/fonts/fa-solid-900.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- <link rel="preload" fetchpriority="high" href="/images/home/hero/hero.webp" as="image" /> -->
     <!-- Load main CSS asynchronously -->
     <link
       rel="preload"
@@ -59,13 +65,13 @@
         transition: opacity 0.3s ease, visibility 0.3s ease;
       }
       .main-bg-image {
-        position:absolute; 
-        inset-inline-end:0;
-        height:100%;
-        width:50%;
+        position: absolute;
+        inset-inline-end: 0;
+        height: 100%;
+        width: 50%;
       }
       body {
-        overflow:hidden;
+        overflow: hidden;
       }
     </style>
 
@@ -125,7 +131,6 @@
                 src="/images/navbar/logo.png"
                 class="h-8"
                 alt="Edugate Logo"
-                fetchpriority="high"
                 width="120"
                 height="32"
               />
@@ -743,15 +748,36 @@
               class="inner relative h-full overflow-hidden rounded-xl 2xl:rounded-[150px] flex items-center text-white"
             >
               <!-- Hero Image with High Priority -->
-              <img
-                src="/images/home/hero/hero.webp"
-                alt="Edugate - Your Gateway to Education"
-                class="absolute inset-0 w-full h-full object-cover"
-                fetchpriority="high"
-                decoding="sync"
-                width="1920"
-                height="1080"
-              />
+              <picture>
+  <!-- موبايل -->
+  <source
+    media="(max-width: 600px)"
+    srcset="/images/home/hero/hero-600.jpg"
+  />
+
+  <!-- تابلت -->
+  <source
+    media="(max-width: 1000px)"
+    srcset="/images/home/hero/hero-1000.jpg"
+  />
+
+  <!-- ديسكتوب -->
+  <source
+    media="(min-width: 1001px)"
+    srcset="/images/home/hero/hero-1600.jpg"
+  />
+
+  <img
+    src="/images/home/hero/hero-1600.jpg"
+    alt="Edugate - Your Gateway to Education"
+    class="absolute inset-0 w-full h-full object-cover"
+    fetchpriority="high"
+    decoding="sync"
+    width="1920"
+    height="1080"
+  />
+</picture>
+
 
               <!-- Overlay Layer -->
               <div class="custom-overlay"></div>
