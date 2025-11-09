@@ -203,22 +203,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (openBtn && mobileMenu && overlay) {
     const openMenu = (): void => {
-      const isRtl = document.documentElement.dir === "rtl";
-      if (isRtl) {
-        mobileMenu.classList.remove("translate-x-full");
-      } else {
-        mobileMenu.classList.remove("-translate-x-full");
-      }
+      mobileMenu.classList.remove("ltr:-translate-x-full","translate-x-full");
       overlay.classList.remove("hidden");
     };
 
     const closeMenu = (): void => {
-      const isRtl = document.documentElement.dir === "rtl";
-      if (isRtl) {
-        mobileMenu.classList.add("translate-x-full");
-      } else {
-        mobileMenu.classList.add("-translate-x-full");
-      }
+      mobileMenu.classList.add("ltr:-translate-x-full","translate-x-full");
       overlay.classList.add("hidden");
     };
 

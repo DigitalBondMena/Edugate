@@ -503,7 +503,7 @@
             <!-- OffCanvas Menu -->
             <div
               id="mobile-menu"
-              class="fixed top-0 right-0 w-80 h-full bg-white z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto"
+              class="fixed top-0 start-0 w-80 h-full bg-white z-50 transform translate-x-full ltr:-translate-x-full transition-transform duration-300 overflow-y-auto"
             >
               <a
                 href="/ar/index.html"
@@ -836,7 +836,7 @@
                     role="presentation"
                     height="60"
                     viewBox="0 0 60 60"
-                    class="w-15 rotate-0"
+                    class="w-15 ltr:-scale-x-[1]"
                   >
                     <image
                       width="60"
@@ -1087,7 +1087,7 @@
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
-                  class="fa-solid rotate-90 lg:rotate-0 fa-arrow-up fill-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl"
+                  class="fa-solid ltr:order-1 ltr:lg:order-0 rotate-90 lg:rotate-0 fa-arrow-up fill-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl"
                   id="prevBtnLg"
                   width="25"
                 >
@@ -1101,7 +1101,7 @@
                   viewBox="0 0 384 512"
                   width="25"
                   id="nextBtnLg"
-                  class="fa-solid rotate-90 lg:rotate-0 fa-arrow-down fill-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl"
+                  class="fa-solid rotate-90  lg:rotate-0 fa-arrow-down fill-active-color cursor-pointer hover:opacity-75 transition-opacity duration-200 text-xl"
                 >
                   <path
                     d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7-105.4-105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
@@ -1340,7 +1340,7 @@
           >
             <!-- Testimonial Slider (Light Card) -->
             <div
-              class="w-full lg:w-1/3 bg-white rounded-[25px] shadow-lg pt-15 p-6 relative z-40 h-[80%] lg:translate-x-[90px]"
+              class="w-full lg:w-1/3 bg-white rounded-[25px] shadow-lg pt-15 p-6 relative z-40 h-[80%] lg:translate-x-[90px] ltr:lg:-translate-x-[90px]"
             >
               <!-- Paper clip icon -->
               <div class="absolute -top-4 left-[50%] translate-x-[-50%]">
@@ -1480,7 +1480,7 @@
               <div class="flex justify-between mt-4">
                 <button
                   id="testimonial-next"
-                  class="cursor-pointer"
+                  class="cursor-pointer ltr:order-1"
                   aria-label="Next testimonial"
                 >
                   <svg
@@ -1525,7 +1525,7 @@
 
             <!-- Green Card with Background Image -->
             <div
-              class="w-full lg:w-1/2 bg-primary-text-color rounded-[25px] rounded-tr-none rounded-br-none overflow-hidden relative h-[400px]"
+              class="w-full lg:w-1/2 bg-primary-text-color rounded-[25px] lg:rounded-s-none overflow-hidden relative lg:h-[400px]"
             >
               <!-- Background image -->
               <img
@@ -1549,7 +1549,7 @@
 
               <!-- Content -->
               <div
-                class="relative z-20 py-15 pr-15 pl-25 h-full flex flex-col justify-center"
+                class="relative z-20 py-15 ps-15 pe-25 h-full flex flex-col justify-center"
               >
                 <h5 class="text-white main-title-ui before:bg-white">الاراء</h5>
                 <p class="text-white mb-6 text-description text-justify">
@@ -1790,7 +1790,7 @@
             <!-- About Edugate -->
             <div class="about-edugate">
               <figure
-                class="bg-white text-end p-3 rounded-[100px] lg:rtl:rounded-r-[100px] lg:ltr:rounded-l-[100px] mb-8"
+                class="bg-white text-end p-3 rounded-e-full mb-8 relative -start-1/2 py-3"
               >
                 <img
                   src="/images/navbar/logo.png"
@@ -1798,6 +1798,8 @@
                   class="h-8 inline-block"
                   loading="lazy"
                   decoding="async"
+                  width="120"
+                  height="32"
                 />
               </figure>
               <p class="text-white mb-5 text-justify">
@@ -1886,19 +1888,8 @@
                   href="mailto:sales@edugateuae.com"
                   class="flex items-center text-white hover:text-gray-200"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 ml-3"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
+                  <svg class="h-5 w-5 me-3 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" >
+                    <path d="M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z"/>\
                   </svg>
                   sales@edugateuae.com
                 </a>
@@ -1908,19 +1899,8 @@
                   href="tel:0123456789"
                   class="flex items-center text-white hover:text-gray-200"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 ml-3"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" class="me-3 fill-current">
+                    <path d="M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z"/>
                   </svg>
                   0123456789
                 </a>
@@ -1928,8 +1908,6 @@
             </div>
           </div>
 
-          <!-- !Important: Keep in mind that if there’s any social media icon that doesn’t have its link added from the dashboard, it won’t appear in the footer.)   -->
-          -->
           <!-- Social Media Icons -->
           <div class="flex space-x-4 relative z-10 py-8 justify-end">
             <a
@@ -2094,8 +2072,6 @@
           />
         </svg>
       </a>
-
-      <!-- Scroll to Top Button -->
       <button
         id="scroll-to-top"
         class="scroll-top-btn"
