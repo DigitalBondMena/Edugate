@@ -51,18 +51,21 @@
     <link
       rel="preload"
       as="image"
+      fetchpriority="high"
       href="/images/home/hero/hero-1600.jpg"
       media="(min-width: 1600px)"
     />
     <link
       rel="preload"
       as="image"
+      fetchpriority="high"
       href="/images/home/hero/hero-1000.jpg"
       media="(max-width: 1000px)"
     />
     <link
       rel="preload"
       as="image"
+      fetchpriority="high"
       href="/images/home/hero/hero-600.jpg"
       media="(max-width: 600px)"
     />
@@ -2114,7 +2117,6 @@
     </div>
 
     <script>
-      // Polyfill for old browsers link preload
       !(function (e) {
         "use strict";
         var t = function (t, n, r) {
