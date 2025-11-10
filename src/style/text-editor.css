@@ -1,0 +1,17 @@
+.text-editor {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.text-editor .text-justify {
+  margin-bottom: 1.5rem;
+  line-height: 1.75;
+}
+
+.text-editor .banner {
+  margin: 2rem 0;
+}
+
+.text-editor p {
+  margin-bottom: 1rem;
+}

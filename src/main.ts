@@ -9,7 +9,9 @@ const closeLoadingScreen = () => {
     if (loadingScreen) {
       loadingScreen.remove();
     }
-    document.body.style.overflow = 'auto'
+    document.body.style.overflow = 'auto';
+    
+    // Initialize text editor if we're on the blog details page
 }
 // BFCache: Handle page restoration
 window.addEventListener("pageshow", (event: PageTransitionEvent) => {
@@ -160,9 +162,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==================== Navbar Active State ====================
   initNavbar();
 
+  
   // ==================== Page-Specific Features ====================
   const path = window.location.pathname;
+  // Initialize realtime form validation (Proxy-based)
+  const initBlogDetailsForm = async () => {
+    await import("./style/validation.css");
+    const module = await import("./ts/form-validation");
 
+      try {
+        module.default({ formSelector: 'form[data-validate="true"]' });
+      } catch (e) {
+        // non-fatal if module fails
+        // console.warn('Form validation init failed', e);
+      }
+    
+  }
+if(path.includes('blog-details')){ 
+initBlogDetailsForm();
+}
+
+// initialize blog details text editor
+const initBlogDetailsTextEditor = async() => {
+  import("./style/text-editor.css");
+  const module = await import("./ts/text-editor");
+  module.initializeTextEditor();
+}
+if(path.includes('blog-details')) initBlogDetailsTextEditor();
   // Use requestIdleCallback for non-critical initialization (with fallback)
   const scheduleTask = (callback: () => void) => {
     if ("requestIdleCallback" in window) {
@@ -187,6 +213,11 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleTask(async() => {
       const module = await import("./ts/init-swiper-about-us");
       module.initSwiperAbout();
+    });
+  } else if(path.includes('gallery')) {
+    scheduleTask(async() => {
+      const module = await import("./ts/initswipper-gallery");
+      module.initSwiperGallery()
     });
   }
 

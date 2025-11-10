@@ -37,8 +37,11 @@
       font-size: 13px;
     }
   }
+  
 }
-
+.container {
+    @apply lg:max-w-6xl
+  }
 @utility container {
   margin-inline: auto;
 }
