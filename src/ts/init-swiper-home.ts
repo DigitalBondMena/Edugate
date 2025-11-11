@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 // @ts-ignore
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Navigation,Autoplay } from "swiper/modules";
 
 /**
  * Initialize Swipers used on the Home page
@@ -16,9 +16,14 @@ export function initSwiperHome(): void {
     const swiperElement = document.querySelector(".mySwiper");
     if (swiperElement) {
       const swiper = new Swiper(".mySwiper", {
+        modules: [Navigation, Autoplay],
         slidesPerView: 1,
         loop:true,
         updateOnWindowResize:true,
+        autoplay:{
+          pauseOnMouseEnter:true,
+          delay:5000
+        },
         breakpoints:{
           1024:{
             direction: "vertical",
