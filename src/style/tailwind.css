@@ -40,7 +40,7 @@
   
 }
 .container {
-    @apply lg:max-w-[950px] xl:max-w-[1150px] px-4
+    @apply lg:max-w-[950px] xl:max-w-[1150px] x:max-w-[1150px] px-4
   }
 @utility container {
   margin-inline: auto;
