@@ -1,8 +1,7 @@
 const CACHE_NAME = 'egec-static-v5'; 
-const TTL = 24 * 60 * 60 * 1000;
 const LCP_IMAGES = [
-  '/assets/images/home/hero/hero-1600.jpg',
-  '/assets/images/home/hero/hero-1000.jpg'
+  './assets/images/home/hero/hero-1600.jpg',
+  './assets/images/home/hero/hero-1000.jpg'
 ];
 
 // عند تثبيت الـ SW
