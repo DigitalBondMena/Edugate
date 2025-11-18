@@ -9,7 +9,9 @@
   --color-alternate-text-color: #839992;
   --color-active-color: #f64148;
 }
-
+.content-visibility {
+  content-visibility: auto;
+}
 @layer base {
   body,
   html {

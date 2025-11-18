@@ -1,21 +1,9 @@
-import Swiper from "swiper";
-// @ts-ignore
-import "swiper/css";
-// @ts-ignore
-import "swiper/css/autoplay";
-// @ts-ignore
-import "swiper/css/navigation";
-import { Autoplay, Navigation } from "swiper/modules";
-
-/**
- * Initialize Swipers used on the About Us page
- */
-export function initSwiperAbout(): void {
+function initSwiperAbout() {
   requestAnimationFrame(() => {
     const partnersSwiper = document.querySelector(".partners-swiper");
+        
     if (partnersSwiper) {
       new Swiper(".partners-swiper", {
-        modules: [Navigation, Autoplay],
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
@@ -41,3 +29,4 @@ export function initSwiperAbout(): void {
     }
   });
 }
+initSwiperAbout();
