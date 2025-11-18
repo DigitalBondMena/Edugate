@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="preload" href="../assets/style/style.css" as="style" />
-    <link rel="preload" as="image" href="../assets/images/home/hero/hero-1600.jpg" imagesrcset="
+    <link rel="preload" as="image" fetchpriority="high" href="../assets/images/home/hero/hero-1600.jpg" imagesrcset="
   ../assets/images/home/hero/hero-600.jpg 600w,
   ../assets/images/home/hero/hero-1000.jpg 1000w,
   ../assets/images/home/hero/hero-1600.jpg 1600w
@@ -44,7 +44,6 @@
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
-
     <!-- Preload critical resources -->
     <link
       rel="preload"
@@ -787,7 +786,7 @@
                   ../assets/images/home/hero/hero-1600.jpg 1600w
                 "
                 src="../assets/images/home/hero/hero-1600.jpg"
-                sizes="(max-width: 600px) 600px, (max-width: 1000px) 1000px, 1600px"
+                sizes="(max-width: 600px) 100vw, (max-width: 1000px) 100vw, 100vw"
                 alt="Edugate - Your Gateway to Education"
                 class="absolute inset-0 w-full h-full object-cover"
                 fetchpriority="high"

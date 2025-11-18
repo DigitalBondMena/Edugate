@@ -1,7 +1,4 @@
-@import "./style/font.css";
-@import "tailwindcss";
-@import "./style/base.css";
-@import "./style/tailwind.css";
+
 :root {
   --fa-font-display: swap;
 }
