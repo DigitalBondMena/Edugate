@@ -6,10 +6,12 @@ function initSwiperHome() {
         slidesPerView: 1,
         loop:true,
         updateOnWindowResize:true,
-        // autoplay:{
-        //   pauseOnMouseEnter:true,
-        //   delay:5000
-        // },
+        observer: true,
+  observeParents: true,
+        autoplay:{
+          pauseOnMouseEnter:true,
+          delay:5000
+        },
         breakpoints:{
           1024:{
             direction: "vertical",

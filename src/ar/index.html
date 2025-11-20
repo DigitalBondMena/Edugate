@@ -171,6 +171,7 @@
               <button
                 type="button"
                 data-dropdown-toggle="language-dropdown-menu"
+                aria-label="change language"
                 class="inline-flex items-center font-medium justify-center py-2 text-sm text-primary-text-color rounded-lg cursor-pointer"
               >
                 <!-- Flag Icon -->
@@ -530,7 +531,7 @@
                 </li>
                 <li>
                   <a
-                    href="/ar/about-us/index.html"
+                    href="./about-us/index.html"
                     class="block py-2 px-3 text-primary-text-color nav-link-underline-offcanvas"
                     >من نحن</a
                   >
@@ -1282,7 +1283,7 @@
       </section>
 
       <!-- ================== Wy Us ================== -->
-      <section class="py-16 [content-visibility:auto]">
+      <section class="py-16 ">
         <div class="container lg:px-16!">
           <div class="grid grid-cols-12">
             <div class="col-span-12 lg:col-span-6 content-center">
@@ -1339,7 +1340,7 @@
       </section>
 
       <!-- Testimonials Section -->
-      <section class="py-20 relative overflow-hidden [content-visibility:auto]">
+      <section class="py-20 relative overflow-hidden ">
         <div class="px-5 lg:px-0 h-full">
           <div
             class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-0 items-center justify-end"
@@ -1576,7 +1577,7 @@
       <section class="relative pb-[100px]">
         <div class="md:px-0! container h-[500px]">
           <div
-            class="relative [content-visibility:auto] [contain-intrinsic-size:500px] mx-auto rounded-lg lg:rounded-[70px] overflow-hidden text-white h-full px-10 pt-4 pb-10 flex items-center justify-center"
+            class="relative mx-auto rounded-lg lg:rounded-[70px] overflow-hidden text-white h-full px-10 pt-4 pb-10 flex items-center justify-center"
           >
             <!-- Background image -->
             <img
@@ -1768,7 +1769,7 @@
       </section>
 
       <!-- ================== Footer ================== -->
-      <footer class="relative z-10 py-10 pt-14 [content-visibility:auto]">
+      <footer class="relative z-10 py-10 pt-14 [content-visibility:auto] [contain-intrinsic-size:885px]">
         <!-- Footer Background Image -->
         <img
           src="../assets/images/footer/foater.webp"
@@ -2173,18 +2174,18 @@
     <script defer src="../assets/js/init-swiper-home.js"></script>
     <script src="../assets/js/mobile-optimizer.js"></script>
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker
-            .register("../sw.js")
-            .then(function (reg) {
-              console.log("SW registered.", reg);
-            })
-            .catch(function (err) {
-              console.warn("SW registration failed:", err);
-            });
-        });
-      }
+      // if ("serviceWorker" in navigator) {
+      //   window.addEventListener("load", function () {
+      //     navigator.serviceWorker
+      //       .register("../sw.js")
+      //       .then(function (reg) {
+      //         console.log("SW registered.", reg);
+      //       })
+      //       .catch(function (err) {
+      //         console.warn("SW registration failed:", err);
+      //       });
+      //   });
+      // }
     </script>
   </body>
 </html>

@@ -1,343 +1,478 @@
-const closeLoadingScreen = () => {
-  const loadingScreen = document.getElementById("loading-screen");
-  if (loadingScreen) {
-    loadingScreen.remove();
-  }
-  document.body.style.overflow = "auto";
+// ==================== PERFORMANCE OPTIMIZATIONS ====================
+const performanceConfig = {
+    scrollThrottle: 16, // ~60fps
+    scrollThreshold: 300,
+    animationTimeout: 200,
+    idleCallbackTimeout: 2000
 };
 
-// BFCache handling
-window.addEventListener("pageshow", (event) => {
-  if (event.persisted) {
-    closeLoadingScreen();
-    initNavbar();
-  }
-});
+// ==================== LOADING SCREEN MANAGEMENT ====================
+class LoadingScreenManager {
+    constructor() {
+        this.loadingScreen = document.getElementById("loading-screen");
+        this.init();
+    }
+    isSafari() {
+      const ua = navigator.userAgent.toLowerCase();
+      return ua.includes("safari") && !ua.includes("chrome") && !ua.includes("android");
+    }
+    init() {      
+        if(window.PerformanceObserver && !this.isSafari()) {
+          new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            console.log(entries);
+            const lastEntry = entries[entries.length - 1];
+            if(lastEntry) {
+              requestAnimationFrame(() => this.close()
+              )
+            }
+          }).observe({type:"largest-contentful-paint",buffered:true})
+        } else {
+          window.addEventListener("load",this.close())
+        }
+    }
 
-// Hide loading screen on load
-window.addEventListener("load", () => {
-  closeLoadingScreen();
-});
-
-// ==================== Floating Buttons Scroll Optimization ====================
-const whatsappBtn = document.querySelector(".whatsapp-btn");
-const scrollTopBtn = document.getElementById("scroll-to-top");
-
-let ticking = false;
-let lastScrollPosition = 0;
-
-const handleScroll = () => {
-  const scrollThreshold = 300;
-  const scrollPosition =
-    window.pageYOffset || document.documentElement.scrollTop;
-
-  if (Math.abs(scrollPosition - lastScrollPosition) < 50) return;
-
-  lastScrollPosition = scrollPosition;
-
-  const shouldShow = scrollPosition > scrollThreshold;
-
-  if (whatsappBtn) {
-    whatsappBtn.classList.toggle("show", shouldShow);
-  }
-  if (scrollTopBtn) {
-    scrollTopBtn.classList.toggle("show", shouldShow);
-  }
-};
-
-const onScroll = () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll();
-      ticking = false;
-    });
-    ticking = true;
-  }
-};
-
-window.addEventListener("scroll", onScroll, { passive: true });
-
-// Scroll to top
-if (scrollTopBtn) {
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
+    close() {
+        if (this.loadingScreen) {
+          this.loadingScreen.classList.add("hidden");
+          setTimeout(()=> {
+            this.loadingScreen.remove();
+          },600)
+        }
+        document.body.style.overflow = "auto";
+    }
 }
 
-// ==================== DOMContentLoaded ====================
-document.addEventListener("DOMContentLoaded", () => {
-  // Language Dropdown
-  const langButton = document.querySelector(
-    '[data-dropdown-toggle="language-dropdown-menu"]'
-  );
-  const langDropdown = document.getElementById("language-dropdown-menu");
-
-  if (langButton && langDropdown) {
-    langDropdown.classList.add("dropdown-closed", "hidden");
-
-    langButton.addEventListener("click", (e) => {
-      e.stopPropagation();
-
-      const isOpen = langDropdown.classList.contains("dropdown-open");
-
-      if (isOpen) {
-        langButton.classList.remove("active");
-        langDropdown.classList.remove("dropdown-open");
-        langDropdown.classList.add("dropdown-closed");
-        setTimeout(() => langDropdown.classList.add("hidden"), 200);
-      } else {
-        langButton.classList.add("active");
-        langDropdown.classList.remove("hidden", "dropdown-closed");
-        void langDropdown.offsetWidth;
-        langDropdown.classList.add("dropdown-open");
-      }
-    });
-
-    // Close on outside click
-    document.addEventListener("click", (e) => {
-      if (
-        !langDropdown.contains(e.target) &&
-        !langButton.contains(e.target)
-      ) {
-        if (langDropdown.classList.contains("dropdown-open")) {
-          langButton.classList.remove("active");
-          langDropdown.classList.remove("dropdown-open");
-          langDropdown.classList.add("dropdown-closed");
-          setTimeout(() => langDropdown.classList.add("hidden"), 200);
-        }
-      }
-    });
-
-    // Close on option click
-    langDropdown.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        langButton.classList.remove("active");
-        langDropdown.classList.remove("dropdown-open");
-        langDropdown.classList.add("dropdown-closed");
-        setTimeout(() => langDropdown.classList.add("hidden"), 200);
-      });
-    });
-
-    // Close on Esc key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && langDropdown.classList.contains("dropdown-open")) {
-        langButton.classList.remove("active");
-        langDropdown.classList.remove("dropdown-open");
-        langDropdown.classList.add("dropdown-closed");
-        setTimeout(() => langDropdown.classList.add("hidden"), 200);
-      }
-    });
-  }
-
-  // Navbar active state
-  initNavbar();
-
-  // Page-specific
-  const path = window.location.pathname;
-
-  // Form validation
-  const initBlogDetailsForm = async () => {
-    await import("./style/validation.css");
-    const module = await import("./ts/form-validation.js");
-
-    try {
-      module.default({ formSelector: 'form[data-validate="true"]' });
-    } catch {}
-  };
-
-  if (path.includes("blog-details")) {
-    initBlogDetailsForm();
-  }
-
-  // Text editor
-  const initBlogDetailsTextEditor = async () => {
-    await import("./style/text-editor.css");
-    const module = await import("./ts/text-editor.js");
-    module.initializeTextEditor();
-  };
-
-  if (path.includes("blog-details")) {
-    initBlogDetailsTextEditor();
-  }
-
-  // requestIdleCallback fallback
-  const scheduleTask = (callback) => {
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(callback, { timeout: 2000 });
-    } else {
-      setTimeout(callback, 1);
+// ==================== FLOATING BUTTONS MANAGER ====================
+class FloatingButtonsManager {
+    constructor() {
+        this.whatsappBtn = document.querySelector(".whatsapp-btn");
+        this.scrollTopBtn = document.getElementById("scroll-to-top");
+        this.lastScrollPosition = 0;
+        this.ticking = false;
+        
+        this.init();
     }
-  };
 
-  if (
-    path === "/ar/index.html" ||
-    path === "/en/index.html" ||
-    path === "/en" ||
-    path === "/ar" ||
-    path === "/"
-  ) {
-    scheduleTask(async () => {
-      const module = await import("./ts/init-swiper-home.js");
-      module.initSwiperHome();
-    });
-  } else if (path.includes("about-us")) {
-    scheduleTask(async () => {
-      const module = await import("./ts/init-swiper-about-us.js");
-      module.initSwiperAbout();
-    });
-  } else if (path.includes("gallery")) {
-    scheduleTask(async () => {
-      const module = await import("./ts/initswipper-gallery.js");
-      module.initSwiperGallery();
-    });
-  }
+    init() {
+        this.bindScrollEvents();
+        this.bindClickEvents();
+    }
 
-  // ==================== Mobile Menu ====================  
-  const openBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const overlay = document.getElementById("menu-overlay");
+    bindScrollEvents() {
+        window.addEventListener("scroll", this.throttleScroll.bind(this), { 
+            passive: true 
+        });
+    }
 
-  if (openBtn && mobileMenu && overlay) {
-    const openMenu = () => {
-      mobileMenu.classList.remove("ltr:-translate-x-full", "translate-x-full");
-      overlay.classList.remove("hidden");
-    };
-
-    const closeMenu = () => {
-      mobileMenu.classList.add("ltr:-translate-x-full", "translate-x-full");
-      overlay.classList.add("hidden");
-    };
-
-    openBtn.addEventListener("click", openMenu);
-    overlay.addEventListener("click", closeMenu);
-  }
-
-  // Mobile dropdowns
-  const mobileDropdownTriggers = document.querySelectorAll(
-    "#mobile-menu .group\\/menui-1 > a, #mobile-menu .group\\/menui-2 > a, #mobile-menu .group\\/menui-3 > a"
-  );
-
-  mobileDropdownTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const parent = trigger.parentElement;
-      const dropdown = trigger.nextElementSibling;
-
-      if (dropdown && parent) {
-        const isActive = parent.classList.contains("active");
-
-        document
-          .querySelectorAll(
-            "#mobile-menu .group\\/menui-1, #mobile-menu .group\\/menui-2, #mobile-menu .group\\/menui-3"
-          )
-          .forEach((item) => {
-            if (item !== parent) {
-              item.classList.remove("active");
-              const otherDropdown = item.querySelector("ul");
-              if (otherDropdown) {
-                otherDropdown.classList.remove("show");
-              }
-            }
-          });
-
-        if (isActive) {
-          parent.classList.remove("active");
-          dropdown.classList.remove("show");
-        } else {
-          parent.classList.add("active");
-          dropdown.classList.add("show");
+    bindClickEvents() {
+        if (this.scrollTopBtn) {
+            this.scrollTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
         }
-      }
-    });
-  });
-});
-// navbar
+    }
 
-function setActiveNavLink() {
-  const currentPath = window.location.pathname;
+    throttleScroll() {
+        if (!this.ticking) {
+            requestAnimationFrame(() => {
+                this.handleScroll();
+                this.ticking = false;
+            });
+            this.ticking = true;
+        }
+    }
 
-  const pathParts = currentPath.split("/").filter((part) => part !== "");
+    handleScroll() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-  // Find the page identifier (skip language folder)
-  let currentPageFolder = "";
+        // Avoid unnecessary DOM operations
+        if (Math.abs(scrollPosition - this.lastScrollPosition) < 50) return;
 
-  // Check if path includes language folder (en/ar)
-  if (pathParts.length >= 2) {
-    // Path like: /en/about-us/index.html or /ar/contact/index.html
-    currentPageFolder = pathParts[1]; // Gets "about-us" or "contact"
-  } else if (pathParts.length === 1) {
-    // Path like: /en/ or /ar/ (home page)
-    currentPageFolder = "home";
-  }
+        this.lastScrollPosition = scrollPosition;
+        const shouldShow = scrollPosition > performanceConfig.scrollThreshold;
 
-  // If path is root or just index.html, it's home
-  if (
-    !currentPageFolder ||
-    currentPath === "/" ||
-    (currentPath.endsWith("index.html") && pathParts.length <= 1)
-  ) {
-    currentPageFolder = "home";
-  }
+        // Batch DOM operations
+        [this.whatsappBtn, this.scrollTopBtn].forEach(btn => {
+            if (btn) btn.classList.toggle("show", shouldShow);
+        });
+    }
+}
 
+// ==================== DROPDOWN MANAGER ====================
+class DropdownManager {
+    constructor(buttonSelector, dropdownId) {
+        this.button = document.querySelector(buttonSelector);
+        this.dropdown = document.getElementById(dropdownId);
+        this.isOpen = false;
+        
+        if (this.button && this.dropdown) {
+            this.init();
+        }
+    }
 
-  // Select all navbar links (both desktop and mobile)
-  const navLinks = document.querySelectorAll(
-    "nav a[href], #mobile-menu a[href], .nav-link"
-  );
+    init() {
+        this.dropdown.classList.add("dropdown-closed", "hidden");
+        this.bindEvents();
+    }
 
-  navLinks.forEach((link) => {
-    link.classList.remove("active-link");
+    bindEvents() {
+        this.button.addEventListener("click", this.toggle.bind(this));
+        
+        document.addEventListener("click", this.handleOutsideClick.bind(this));
+        document.addEventListener("keydown", this.handleEscapeKey.bind(this));
+        
+        // Close on option click
+        this.dropdown.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", this.close.bind(this));
+        });
+    }
 
-    const linkHref = link.getAttribute("href");
-    if (!linkHref) return;
+    toggle(e) {
+        e.stopPropagation();
+        this.isOpen ? this.close() : this.open();
+    }
 
-    let linkPageFolder = "";
+    open() {
+        this.isOpen = true;
+        this.button.classList.add("active");
+        this.dropdown.classList.remove("hidden", "dropdown-closed");
+        
+        // Force reflow
+        void this.dropdown.offsetWidth;
+        
+        this.dropdown.classList.add("dropdown-open");
+    }
 
-    if (
-      linkHref === "/" ||
-      linkHref === "./index.html" ||
-      linkHref === "../index.html" ||
-      linkHref === "index.html" ||
-      linkHref.endsWith("/en/") ||
-      linkHref.endsWith("/ar/")
-    ) {
-      linkPageFolder = "home";
-    } else {
-      // Extract folder name from href
-      const hrefParts = linkHref
-        .split("/")
-        .filter(
-          (part) =>
-            part !== "" &&
-            part !== "." &&
-            part !== ".." &&
-            part !== "index.html"
+    close() {
+        this.isOpen = false;
+        this.button.classList.remove("active");
+        this.dropdown.classList.remove("dropdown-open");
+        this.dropdown.classList.add("dropdown-closed");
+        
+        setTimeout(() => {
+            if (!this.isOpen) {
+                this.dropdown.classList.add("hidden");
+            }
+        }, performanceConfig.animationTimeout);
+    }
+
+    handleOutsideClick(e) {
+        if (!this.dropdown.contains(e.target) && !this.button.contains(e.target)) {
+            this.close();
+        }
+    }
+
+    handleEscapeKey(e) {
+        if (e.key === "Escape" && this.isOpen) {
+            this.close();
+        }
+    }
+}
+
+// ==================== MOBILE MENU MANAGER ====================
+class MobileMenuManager {
+    constructor() {
+        this.openBtn = document.getElementById("mobile-menu-btn");
+        this.mobileMenu = document.getElementById("mobile-menu");
+        this.overlay = document.getElementById("menu-overlay");
+        
+        if (this.openBtn && this.mobileMenu && this.overlay) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.bindEvents();
+        this.initMobileDropdowns();
+    }
+
+    bindEvents() {
+        this.openBtn.addEventListener("click", this.open.bind(this));
+        this.overlay.addEventListener("click", this.close.bind(this));
+    }
+
+    open() {
+        this.mobileMenu.classList.remove("ltr:-translate-x-full", "translate-x-full");
+        this.overlay.classList.remove("hidden");
+    }
+
+    close() {
+        this.mobileMenu.classList.add("ltr:-translate-x-full", "translate-x-full");
+        this.overlay.classList.add("hidden");
+        
+        // Close all dropdowns when menu closes
+        this.closeAllDropdowns();
+    }
+
+    initMobileDropdowns() {
+        const dropdownTriggers = document.querySelectorAll(
+            "#mobile-menu .group\\/menui-1 > a, #mobile-menu .group\\/menui-2 > a, #mobile-menu .group\\/menui-3 > a"
         );
 
-      // Get the last meaningful part (the page folder)
-      if (hrefParts.length > 0) {
-        // Remove language folder if present
-        const lastPart = hrefParts[hrefParts.length - 1];
-        linkPageFolder =
-          lastPart === "en" || lastPart === "ar"
-            ? hrefParts[hrefParts.length - 2] || "home"
-            : lastPart;
-      }
+        dropdownTriggers.forEach(trigger => {
+            trigger.addEventListener("click", this.handleDropdownClick.bind(this));
+        });
     }
 
-    // Add active class if folders match
-    if (linkPageFolder === currentPageFolder) {
-      link.classList.add("active-link");
-      console.log("Active link:", linkHref, "(matched:", linkPageFolder, ")"); // Debug log
+    handleDropdownClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parent = e.currentTarget.parentElement;
+        const dropdown = e.currentTarget.nextElementSibling;
+
+        if (!dropdown || !parent) return;
+
+        const isActive = parent.classList.contains("active");
+
+        // Close other dropdowns
+        this.closeAllDropdowns(parent);
+
+        // Toggle current dropdown
+        if (isActive) {
+            parent.classList.remove("active");
+            dropdown.classList.remove("show");
+        } else {
+            parent.classList.add("active");
+            dropdown.classList.add("show");
+        }
     }
-  });
+
+    closeAllDropdowns(exceptParent = null) {
+        document.querySelectorAll(
+            "#mobile-menu .group\\/menui-1, #mobile-menu .group\\/menui-2, #mobile-menu .group\\/menui-3"
+        ).forEach(item => {
+            if (item !== exceptParent) {
+                item.classList.remove("active");
+                const dropdown = item.querySelector("ul");
+                if (dropdown) dropdown.classList.remove("show");
+            }
+        });
+    }
 }
-function initNavbar() {
-  setActiveNavLink();
-  window.addEventListener("popstate", setActiveNavLink);
+
+// ==================== NAVIGATION MANAGER ====================
+class NavigationManager {
+    constructor() {
+        this.currentPath = window.location.pathname;
+    }
+
+    setActiveNavLink() {
+        const currentPageFolder = this.getCurrentPageFolder();
+        const navLinks = document.querySelectorAll(
+            "nav a[href], #mobile-menu a[href], .nav-link"
+        );
+
+        navLinks.forEach(link => {
+            link.classList.remove("active-link");
+            const linkPageFolder = this.getLinkPageFolder(link);
+
+            if (linkPageFolder === currentPageFolder) {
+                link.classList.add("active-link");
+            }
+        });
+    }
+
+    getCurrentPageFolder() {
+        const pathParts = this.currentPath.split("/").filter(part => part !== "");
+        
+        if (pathParts.length >= 2) {
+            return pathParts[1]; // Gets "about-us", "contact", etc.
+        } else if (pathParts.length === 1) {
+            return "home";
+        }
+        
+        // Root path or index.html
+        if (!pathParts.length || this.currentPath === "/" || 
+            (this.currentPath.endsWith("index.html") && pathParts.length <= 1)) {
+            return "home";
+        }
+        
+        return pathParts[pathParts.length - 1] || "home";
+    }
+
+    getLinkPageFolder(link) {
+        const linkHref = link.getAttribute("href");
+        if (!linkHref) return "";
+
+        // Home page links
+        if (this.isHomeLink(linkHref)) {
+            return "home";
+        }
+
+        // Extract folder name from href
+        const hrefParts = linkHref
+            .split("/")
+            .filter(part => 
+                part !== "" && 
+                part !== "." && 
+                part !== ".." && 
+                part !== "index.html"
+            );
+
+        if (!hrefParts.length) return "home";
+
+        const lastPart = hrefParts[hrefParts.length - 1];
+        return (lastPart === "en" || lastPart === "ar") 
+            ? hrefParts[hrefParts.length - 2] || "home" 
+            : lastPart;
+    }
+
+    isHomeLink(linkHref) {
+        return linkHref === "/" || 
+               linkHref === "./index.html" || 
+               linkHref === "../index.html" || 
+               linkHref === "index.html" || 
+               linkHref.endsWith("/en/") || 
+               linkHref.endsWith("/ar/");
+    }
+
+    init() {
+        this.setActiveNavLink();
+        window.addEventListener("popstate", () => {
+            this.currentPath = window.location.pathname;
+            this.setActiveNavLink();
+        });
+    }
+}
+
+// ==================== PAGE SPECIFIC LOADER ====================
+class PageSpecificLoader {
+    constructor() {
+        this.path = window.location.pathname;
+    }
+
+    async loadPageSpecificAssets() {
+        const tasks = [];
+
+        if (this.path.includes("blog-details")) {
+            tasks.push(this.loadBlogDetailsAssets());
+        }
+
+        // Swiper initialization based on page
+        if (this.isHomePage()) {
+            tasks.push(this.loadSwiper("./ts/init-swiper-home.js"));
+        } else if (this.path.includes("about-us")) {
+            tasks.push(this.loadSwiper("./ts/init-swiper-about-us.js"));
+        } else if (this.path.includes("gallery")) {
+            tasks.push(this.loadSwiper("./ts/initswipper-gallery.js"));
+        }
+
+        // Execute tasks during idle time
+        if (tasks.length > 0) {
+            this.scheduleIdleTask(async () => {
+                await Promise.allSettled(tasks);
+            });
+        }
+    }
+
+    async loadBlogDetailsAssets() {
+        try {
+            // Load CSS in parallel
+            const cssLoad = import("./style/validation.css");
+            const textEditorCssLoad = import("./style/text-editor.css");
+            
+            // Load JS modules
+            const [formModule, textEditorModule] = await Promise.all([
+                import("./ts/form-validation.js"),
+                import("./ts/text-editor.js"),
+                cssLoad,
+                textEditorCssLoad
+            ]);
+
+            // Initialize modules
+            if (formModule.default) {
+                formModule.default({ formSelector: 'form[data-validate="true"]' });
+            }
+            if (textEditorModule.initializeTextEditor) {
+                textEditorModule.initializeTextEditor();
+            }
+        } catch (error) {
+            console.warn("Blog details assets loading failed:", error);
+        }
+    }
+
+    async loadSwiper(modulePath) {
+        try {
+            const module = await import(modulePath);
+            if (module.initSwiperHome || module.initSwiperAbout || module.initSwiperGallery) {
+                Object.values(module)[0](); // Call the first function export
+            }
+        } catch (error) {
+            console.warn(`Swiper module ${modulePath} loading failed:`, error);
+        }
+    }
+
+    isHomePage() {
+        return this.path === "/ar/index.html" ||
+               this.path === "/en/index.html" ||
+               this.path === "/en" ||
+               this.path === "/ar" ||
+               this.path === "/";
+    }
+
+    scheduleIdleTask(callback) {
+        if ("requestIdleCallback" in window) {
+            requestIdleCallback(callback, { timeout: performanceConfig.idleCallbackTimeout });
+        } else {
+            setTimeout(callback, 1);
+        }
+    }
+}
+
+// ==================== MAIN APPLICATION INITIALIZATION ====================
+class App {
+    constructor() {
+        this.components = {};
+    }
+
+    async initialize() {
+        // Initialize core components
+        this.components.loadingManager = new LoadingScreenManager();
+        this.components.floatingButtons = new FloatingButtonsManager();
+        this.components.navigation = new NavigationManager();
+        this.components.pageLoader = new PageSpecificLoader();
+
+        // Wait for DOM to be ready for interactive components
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.initInteractiveComponents());
+        } else {
+            this.initInteractiveComponents();
+        }
+
+        // Load page-specific assets
+        this.components.pageLoader.loadPageSpecificAssets();
+    }
+
+    initInteractiveComponents() {
+        // Language dropdown
+        this.components.languageDropdown = new DropdownManager(
+            '[data-dropdown-toggle="language-dropdown-menu"]',
+            'language-dropdown-menu'
+        );
+
+        // Mobile menu
+        this.components.mobileMenu = new MobileMenuManager();
+
+        // Navigation
+        this.components.navigation.init();
+    }
+}
+
+// ==================== APPLICATION START ====================
+// Initialize the application
+const app = new App();
+
+// Start the app with error handling
+app.initialize().catch(error => {
+    console.error("Application initialization failed:", error);
+});
+
+// Export for potential debugging
+if (typeof window !== 'undefined') {
+    window.app = app;
 }

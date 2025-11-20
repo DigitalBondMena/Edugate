@@ -1826,6 +1826,15 @@
   .\[contain-intrinsic-size\:500px\] {
     contain-intrinsic-size: 500px;
   }
+  .\[contain-intrinsic-size\:858px\] {
+    contain-intrinsic-size: 858px;
+  }
+  .\[contain-intrinsic-size\:885px\] {
+    contain-intrinsic-size: 885px;
+  }
+  .\[contain-intrinsic-size\:px\] {
+    contain-intrinsic-size: px;
+  }
   .\[content-visibile\:auto\] {
     content-visibile: auto;
   }
