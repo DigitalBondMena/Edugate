@@ -1,22 +1,9 @@
-type ValidatorState = {
-  name: string;
-  email: string;
-  phone: string; // converted from emirates -> phone
-  message: string;
-  touched: Record<string, boolean>;
-  errors: Record<string, string>;
-};
-
 // Basic email regex (not perfect but practical)
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 // Phone: allow +, digits, spaces and -; require between 7 and 15 digits when stripped
-const PHONE_ALLOWED = /^[0-9+\s-]*$/;
-
-function createErrorElement(input: HTMLElement, message: string) {
-  let el = input.parentElement?.querySelector(
-    ".error-message"
-  ) as HTMLElement | null;
+let iti = null;
+function createErrorElement(input, message) {
+  let el = input.parentElement?.querySelector(".error-message");
   if (!el) {
     el = document.createElement("div");
     el.className = "error-message absolute top-full text-red-600 text-sm mt-1";
@@ -25,20 +12,16 @@ function createErrorElement(input: HTMLElement, message: string) {
   el.textContent = message;
 }
 
-function clearErrorElement(input: HTMLElement) {
-  const el = input.parentElement?.querySelector(
-    ".error-message"
-  ) as HTMLElement | null;
+function clearErrorElement(input) {
+  const el = input.parentElement?.querySelector(".error-message");
   if (el) el.textContent = "";
 }
 
-function validateField(
-  key: keyof Omit<ValidatorState, "errors">,
-  value: string
-): string | null {
+function validateField(key, value) {
   const v = value?.trim() ?? "";
   const isRtl = document.documentElement.dir === "rtl";
-  const validationMessages = Object.freeze({
+
+  const validationMessages = {
     name: {
       min: isRtl
         ? "الاسم يجب أن يحتوي على 3 أحرف على الأقل"
@@ -48,17 +31,24 @@ function validateField(
       required: isRtl
         ? "الرجاء إدخال البريد الإلكتروني"
         : "Please enter your email address.",
-		valid: isRtl ? "الرجاء إدخال بريد إلكتروني صالح":"Please enter a valid email address."
+      valid: isRtl
+        ? "الرجاء إدخال بريد إلكتروني صالح"
+        : "Please enter a valid email address.",
     },
-	phone:{
-		required:isRtl ? "الرجاء إدخال رقم الهاتف": "Please enter your phone number.",
-		valid:isRtl ? "رقم الهاتف يحتوي غير صحيح":"The phone number contains an incorrect number.",
-		minmax:isRtl?"رقم الهاتف يجب أن يحتوي بين 7 و 15 رقماً":"The phone number must contain between 7 and 15 digits.",
-	},
-	message:{
-		min:isRtl?"الرسالة يجب أن تحتوي على 10 أحرف على الأقل":"The message must contain at least 10 characters."
-	}
-  });
+    phone: {
+      required: isRtl ? "الرجاء إدخال رقم الهاتف" : "Please enter your phone number.",
+      valid: isRtl ? "رقم الهاتف يحتوي غير صحيح" : "The phone number contains an incorrect number.",
+      minmax: isRtl
+        ? "رقم الهاتف يجب أن يحتوي بين 7 و 15 رقماً"
+        : "The phone number must contain between 7 and 15 digits.",
+    },
+    message: {
+      min: isRtl
+        ? "الرسالة يجب أن تحتوي على 10 أحرف على الأقل"
+        : "The message must contain at least 10 characters.",
+    },
+  };
+
   switch (key) {
     case "name":
       if (!v || v.length < 3) return validationMessages.name.min;
@@ -69,45 +59,36 @@ function validateField(
       return null;
     case "phone":
       if (!v) return validationMessages.phone.required;
-      if (!PHONE_ALLOWED.test(v))
+      if (iti.isValidNumber())
         return validationMessages.phone.valid;
       const digits = v.replace(/[^0-9]/g, "");
-      if (digits.length < 7 || digits.length > 15)
-        return validationMessages.phone.minmax;
+      if (digits.length < 7 || digits.length > 15) return validationMessages.phone.minmax;
       return null;
     case "message":
-      if (!v || v.length < 10)
-        return "الرسالة يجب أن تحتوي على 10 أحرف على الأقل";
+      if (!v || v.length < 10) return validationMessages.message.min;
       return null;
     default:
       return null;
   }
 }
 
-export default function initFormValidation(opts?: { formSelector?: string }) {
+function initFormValidation(opts) {
   const formSelector = opts?.formSelector ?? 'form[data-validate="true"]';
-  const forms = Array.from(
-    document.querySelectorAll<HTMLFormElement>(formSelector)
-  );
+  const forms = Array.from(document.querySelectorAll(formSelector));
   if (!forms.length) return;
 
   forms.forEach((form) => {
-    // find inputs by either name or data-validate attribute
-    const nameInput = form.querySelector<HTMLInputElement>(
-      'input[name="name"], input[data-validate="name"]'
-    );
-    const emailInput = form.querySelector<HTMLInputElement>(
-      'input[name="email"], input[data-validate="email"]'
-    );
-    const phoneInput = form.querySelector<HTMLInputElement>(
-      'input[name="phone"], input[data-validate="phone"]'
-    );
-    const messageInput = form.querySelector<HTMLTextAreaElement>(
-      'textarea[name="message"], textarea[data-validate="message"]'
-    );
-
-    // Create state
-    const initialState: ValidatorState = {
+    const nameInput = form.querySelector('input[name="name"], input[data-validate="name"]');
+    const emailInput = form.querySelector('input[name="email"], input[data-validate="email"]');
+    const phoneInput = form.querySelector('input[name="phone"], input[data-validate="phone"]');
+    const messageInput = form.querySelector('textarea[name="message"], textarea[data-validate="message"]');
+   iti = window.intlTelInput(phoneInput, {
+    initialCountry: "eg",
+    preferredCountries: ["eg", "sa", "ae"],
+    separateDialCode: true,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
+  });
+    const state = {
       name: nameInput?.value ?? "",
       email: emailInput?.value ?? "",
       phone: phoneInput?.value ?? "",
@@ -116,137 +97,75 @@ export default function initFormValidation(opts?: { formSelector?: string }) {
       touched: {},
     };
 
-    const handler: ProxyHandler<ValidatorState> = {
-      set(target, prop: string, value) {
-        if (prop === "errors") {
-          (target as any)[prop] = value;
-          return true;
-        }
+    function handleInput(key, input) {
+      const value = input.value;
+      const error = validateField(key, value);
 
-        if (prop in target) {
-          (target as any)[prop] = value;
+      state[key] = value;
 
-          // run validation for this property if it's one of the fields
-          if (
-            prop === "name" ||
-            prop === "email" ||
-            prop === "phone" ||
-            prop === "message"
-          ) {
-            const key = prop as keyof Omit<ValidatorState, "errors">;
-            const message = validateField(key, String(value));
-            if (message) {
-              target.errors[key] = message;
-            } else {
-              delete target.errors[key];
-            }
+      if (state.touched[key]) {
+        if (error) createErrorElement(input, error);
+        else clearErrorElement(input);
+      }
 
-            // Update UI immediately
-            const inputEl =
-              key === "name"
-                ? nameInput
-                : key === "email"
-                ? emailInput
-                : key === "phone"
-                ? phoneInput
-                : messageInput;
-            if (state.touched[key]) {
-              if (inputEl) {
-                if (message) {
-                  inputEl.classList.add("invalid");
-                  createErrorElement(inputEl as HTMLElement, message);
-                } else {
-                  inputEl.classList.remove("invalid");
-                  clearErrorElement(inputEl as HTMLElement);
-                }
-              }
-            }
-          }
+      state.errors[key] = error;
+    }
 
-          return true;
-        }
+    function markTouched(key, input) {
+      state.touched[key] = true;
+      const error = validateField(key, input.value);
 
-        (target as any)[prop] = value;
-        return true;
-      },
-    };
+      if (error) createErrorElement(input, error);
+      else clearErrorElement(input);
+    }
 
-    const state = new Proxy<ValidatorState>(initialState, handler);
-
-    // Attach event listeners for realtime validation
     if (nameInput) {
-      nameInput.addEventListener("input", (e) => {
-        state.name = (e.target as HTMLInputElement).value;
-      });
-      nameInput.addEventListener("blur", () => {
-        state.touched.name = true;
-        state.name = nameInput.value;
-      });
+      nameInput.addEventListener("input", () => handleInput("name", nameInput));
+      nameInput.addEventListener("blur", () => markTouched("name", nameInput));
     }
 
     if (emailInput) {
-      emailInput.addEventListener("input", (e) => {
-        state.email = (e.target as HTMLInputElement).value;
-      });
-      emailInput.addEventListener("blur", () => {
-        state.touched.email = true;
-        state.email = emailInput.value;
-      });
+      emailInput.addEventListener("input", () => handleInput("email", emailInput));
+      emailInput.addEventListener("blur", () => markTouched("email", emailInput));
     }
 
     if (phoneInput) {
-      phoneInput.addEventListener("input", (e) => {
-        const raw = (e.target as HTMLInputElement).value;
-        // allow digits, +, space and hyphen
-        const filtered = raw.replace(/[^0-9+\s-]/g, "");
-        if (filtered !== raw) (e.target as HTMLInputElement).value = filtered;
-        state.phone = filtered;
-      });
-      phoneInput.addEventListener("blur", () => {
-        state.touched.phone = true;
-        state.phone = phoneInput.value;
-      });
+      phoneInput.addEventListener("input", () => handleInput("phone", phoneInput));
+      phoneInput.addEventListener("blur", () => markTouched("phone", phoneInput));
     }
 
     if (messageInput) {
-      messageInput.addEventListener("input", (e) => {
-        state.message = (e.target as HTMLTextAreaElement).value;
-      });
-      messageInput.addEventListener("blur", () => {
-        state.touched.message = true;
-        state.message = messageInput.value;
-      });
+      messageInput.addEventListener("input", () => handleInput("message", messageInput));
+      messageInput.addEventListener("blur", () => markTouched("message", messageInput));
     }
 
-    // On submit, validate everything and prevent submission if invalid
     form.addEventListener("submit", (e) => {
-      if (nameInput) state.name = nameInput.value;
-      if (emailInput) state.email = emailInput.value;
-      if (phoneInput) state.phone = phoneInput.value;
-      if (messageInput) state.message = messageInput.value;
+      let hasError = false;
 
-      const hasErrors = Object.keys(state.errors).length > 0;
-      if (hasErrors) {
+      ["name", "email", "phone", "message"].forEach((key) => {
+        const input =
+          key === "message" ? messageInput
+          : key === "phone" ? phoneInput
+          : key === "email" ? emailInput
+          : nameInput;
+
+        if (!input) return;
+
+        const error = validateField(key, input.value);
+        state.errors[key] = error;
+        state.touched[key] = true;
+
+        if (error) {
+          createErrorElement(input, error);
+          hasError = true;
+        }
+      });
+
+      if (hasError) {
         e.preventDefault();
-        const firstKey = Object.keys(
-          state.errors
-        )[0] as keyof typeof state.errors;
-        const el =
-          firstKey === "name"
-            ? nameInput
-            : firstKey === "email"
-            ? emailInput
-            : firstKey === "phone"
-            ? phoneInput
-            : messageInput;
-        el?.focus();
       }
     });
-
-    // initial validation run
-    if (nameInput) state.name = nameInput.value;
-    if (emailInput) state.email = emailInput.value;
-    if (phoneInput) state.phone = phoneInput.value;
-    if (messageInput) state.message = messageInput.value;
   });
 }
+
+initFormValidation();

@@ -341,88 +341,62 @@ class NavigationManager {
 }
 
 // ==================== PAGE SPECIFIC LOADER ====================
-class PageSpecificLoader {
-    constructor() {
-        this.path = window.location.pathname;
-    }
+// class PageSpecificLoader {
+//     constructor() {
+//         this.path = window.location.pathname;
+//     }
 
-    async loadPageSpecificAssets() {
-        const tasks = [];
+//     async loadPageSpecificAssets() {
+//         const tasks = [];
 
-        if (this.path.includes("blog-details")) {
-            tasks.push(this.loadBlogDetailsAssets());
-        }
+       
 
-        // Swiper initialization based on page
-        if (this.isHomePage()) {
-            tasks.push(this.loadSwiper("./ts/init-swiper-home.js"));
-        } else if (this.path.includes("about-us")) {
-            tasks.push(this.loadSwiper("./ts/init-swiper-about-us.js"));
-        } else if (this.path.includes("gallery")) {
-            tasks.push(this.loadSwiper("./ts/initswipper-gallery.js"));
-        }
+//         // Swiper initialization based on page
+//         if (this.isHomePage()) {
+//             tasks.push(this.loadSwiper("./ts/init-swiper-home.js"));
+//         } else if (this.path.includes("about-us")) {
+//             tasks.push(this.loadSwiper("./ts/init-swiper-about-us.js"));
+//         } else if (this.path.includes("gallery")) {
+//             tasks.push(this.loadSwiper("./ts/initswipper-gallery.js"));
+//         }
 
-        // Execute tasks during idle time
-        if (tasks.length > 0) {
-            this.scheduleIdleTask(async () => {
-                await Promise.allSettled(tasks);
-            });
-        }
-    }
+//         // Execute tasks during idle time
+//         if (tasks.length > 0) {
+//             this.scheduleIdleTask(async () => {
+//                 await Promise.allSettled(tasks);
+//             });
+//         }
+//     }
 
-    async loadBlogDetailsAssets() {
-        try {
-            // Load CSS in parallel
-            const cssLoad = import("./style/validation.css");
-            const textEditorCssLoad = import("./style/text-editor.css");
-            
-            // Load JS modules
-            const [formModule, textEditorModule] = await Promise.all([
-                import("./ts/form-validation.js"),
-                import("./ts/text-editor.js"),
-                cssLoad,
-                textEditorCssLoad
-            ]);
+   
 
-            // Initialize modules
-            if (formModule.default) {
-                formModule.default({ formSelector: 'form[data-validate="true"]' });
-            }
-            if (textEditorModule.initializeTextEditor) {
-                textEditorModule.initializeTextEditor();
-            }
-        } catch (error) {
-            console.warn("Blog details assets loading failed:", error);
-        }
-    }
+//     async loadSwiper(modulePath) {
+//         try {
+//             const module = await import(modulePath);
+//             if (module.initSwiperHome || module.initSwiperAbout || module.initSwiperGallery) {
+//                 Object.values(module)[0](); // Call the first function export
+//             }
+//         } catch (error) {
+//             console.warn(`Swiper module ${modulePath} loading failed:`, error);
+//         }
+//     }
 
-    async loadSwiper(modulePath) {
-        try {
-            const module = await import(modulePath);
-            if (module.initSwiperHome || module.initSwiperAbout || module.initSwiperGallery) {
-                Object.values(module)[0](); // Call the first function export
-            }
-        } catch (error) {
-            console.warn(`Swiper module ${modulePath} loading failed:`, error);
-        }
-    }
+//     isHomePage() {
+//         return this.path === "/ar/index.html" ||
+//                this.path === "/en/index.html" ||
+//                this.path === "/en" ||
+//                this.path === "/ar" ||
+//                this.path === "/";
+//     }
 
-    isHomePage() {
-        return this.path === "/ar/index.html" ||
-               this.path === "/en/index.html" ||
-               this.path === "/en" ||
-               this.path === "/ar" ||
-               this.path === "/";
-    }
-
-    scheduleIdleTask(callback) {
-        if ("requestIdleCallback" in window) {
-            requestIdleCallback(callback, { timeout: performanceConfig.idleCallbackTimeout });
-        } else {
-            setTimeout(callback, 1);
-        }
-    }
-}
+//     scheduleIdleTask(callback) {
+//         if ("requestIdleCallback" in window) {
+//             requestIdleCallback(callback, { timeout: performanceConfig.idleCallbackTimeout });
+//         } else {
+//             setTimeout(callback, 1);
+//         }
+//     }
+// }
 
 // ==================== MAIN APPLICATION INITIALIZATION ====================
 class App {
@@ -435,7 +409,7 @@ class App {
         this.components.loadingManager = new LoadingScreenManager();
         this.components.floatingButtons = new FloatingButtonsManager();
         this.components.navigation = new NavigationManager();
-        this.components.pageLoader = new PageSpecificLoader();
+        // this.components.pageLoader = new PageSpecificLoader();
 
         // Wait for DOM to be ready for interactive components
         if (document.readyState === 'loading') {
@@ -445,7 +419,7 @@ class App {
         }
 
         // Load page-specific assets
-        this.components.pageLoader.loadPageSpecificAssets();
+        // this.components.pageLoader.loadPageSpecificAssets();
     }
 
     initInteractiveComponents() {
