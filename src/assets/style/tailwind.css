@@ -9,8 +9,14 @@
   --color-alternate-text-color: #839992;
   --color-active-color: #f64148;
 }
-.content-visibility {
-  content-visibility: auto;
+
+[data-hide-mobile] {
+  display:none
+}
+@media screen and (min-width:1024px) {
+  [data-hide-mobile] {
+    display:block
+  }
 }
 @layer base {
   body,
@@ -72,7 +78,19 @@
     left: auto;
     right: 0;
   } */
-
+   
+  .phone-input .iti {
+    @apply w-full;
+      .iti__selected-flag {
+        @apply bg-[#849992]! text-white flex-row-reverse gap-2 rounded-e-[25px] overflow-hidden ;
+        .iti__arrow {
+          display: none
+        }
+      }
+      .iti__country-list {
+        @apply left-0 w-72 md:w-[670px] lg:w-[835px] xl:w-[360px] 2xl:w-[497px]
+      }
+  }
   .main-description-ui {
     @apply text-description text-alternate-text-color text-justify;
   }

@@ -37,10 +37,7 @@ function validateField(key, value) {
     },
     phone: {
       required: isRtl ? "الرجاء إدخال رقم الهاتف" : "Please enter your phone number.",
-      valid: isRtl ? "رقم الهاتف يحتوي غير صحيح" : "The phone number contains an incorrect number.",
-      minmax: isRtl
-        ? "رقم الهاتف يجب أن يحتوي بين 7 و 15 رقماً"
-        : "The phone number must contain between 7 and 15 digits.",
+      valid: isRtl ? "رقم الهاتف غير صحيح" : "The phone number contains an incorrect number.",
     },
     message: {
       min: isRtl
@@ -59,10 +56,9 @@ function validateField(key, value) {
       return null;
     case "phone":
       if (!v) return validationMessages.phone.required;
-      if (iti.isValidNumber())
-        return validationMessages.phone.valid;
-      const digits = v.replace(/[^0-9]/g, "");
-      if (digits.length < 7 || digits.length > 15) return validationMessages.phone.minmax;
+      if (!iti.isValidNumber()) {
+        return validationMessages.phone.valid
+      };
       return null;
     case "message":
       if (!v || v.length < 10) return validationMessages.message.min;
@@ -163,9 +159,23 @@ function initFormValidation(opts) {
 
       if (hasError) {
         e.preventDefault();
+      } else {
+        document.getElementById("actualPhone").value = iti.getNumber();
       }
     });
   });
 }
-
-initFormValidation();
+const initMainListener = () => {
+  document.querySelectorAll('[type="number"],[type="tel"]').forEach(e => {
+  e.addEventListener("input",(e) => {
+    const input = e.target;
+    input.value = input.value.replace(/[^0-9]/g,"")
+  })
+})
+}
+const initForm = () => {
+  initFormValidation();
+  initMainListener()
+}
+// start form
+initForm()

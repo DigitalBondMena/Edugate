@@ -1,45 +1,27 @@
-import Swiper from "swiper";
-// @ts-ignore
-import "swiper/css";
-// @ts-ignore
-import "swiper/css/autoplay";
-// @ts-ignore
-import "swiper/css/navigation";
-import { Autoplay, Navigation,Pagination } from "swiper/modules";
 
-/**
- * Initialize Swipers used on the About Us page
- */
 const initGalleryImagesSwiper = () => {
-    new Swiper(".gallery-swiper", {
-    modules: [Navigation, Pagination, Autoplay],
-    slidesPerView: 1,
-    loop: true,
-    // autoplay: {
-    //   delay: 3500,
-    //   disableOnInteraction: false,
-    // },
-    speed: 600,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    }
-  });
-}
-type TabID = string;
-type CacheMap = Map<TabID, HTMLElement>;
-export function initSwiperGallery(): void {
-  requestAnimationFrame(() => {
-    const gallerySwiper = document.querySelector(".gallery-swiper");
-    if (gallerySwiper) {
+  const gallerySwiper = document.querySelector(".gallery-swiper-btn");
+  if(!gallerySwiper) return;
+  requestAnimationFrame(()=>{
       new Swiper(".gallery-swiper", {
-        modules: [Navigation, Autoplay],
         slidesPerView: 1,
-        // autoplay: {
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        loop: true,
+        speed: 600,
+        observer:true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        }
+      });
+  })
+};
+
+function initSwiperBtnGallery() {
+  const gallerySwiperBtn = document.querySelector(".gallery-swiper-btn");
+  if (!gallerySwiperBtn)return;
+  requestAnimationFrame(() => {
+      new Swiper(".gallery-swiper-btn", {
+        slidesPerView: 1,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -49,57 +31,59 @@ export function initSwiperGallery(): void {
           768: { slidesPerView: 3 },
         },
       });
-    }
-    initGalleryImagesSwiper()
   });
-const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".tab-btn");
-const tabContentArea = document.getElementById("tab-content-area") as HTMLElement;
-const cacheStore: CacheMap = new Map<TabID, HTMLElement>();
 
-function loadTab(tabId: TabID): void {
-  // Clear displayed content
-  tabContentArea.innerHTML = "";
+  const buttons = document.querySelectorAll(".tab-btn");
+  const tabContentArea = document.getElementById("tab-content-area");
 
-  // If tab content is already cached → reuse it
-  if (cacheStore.has(tabId)) {
-    const cachedNode = cacheStore.get(tabId)!.cloneNode(true) as HTMLElement;
-    tabContentArea.appendChild(cachedNode);
-    return;
+  // Cache store
+  const cacheStore = new Map();
+
+  function loadTab(tabId) {
+    tabContentArea.innerHTML = "";
+
+    // Check cache
+    if (cacheStore.has(tabId)) {
+      const cachedNode = cacheStore.get(tabId).cloneNode(true);
+      tabContentArea.appendChild(cachedNode);
+      return;
+    }
+
+    // First time load
+    const originalContent = document.querySelector(`#tabs-cache > #${tabId}`);
+    if (!originalContent) return;
+
+    const cloned = originalContent.cloneNode(true);
+    cacheStore.set(tabId, cloned);
+
+    originalContent.remove();
+
+    tabContentArea.appendChild(cloned.cloneNode(true));
   }
 
-  // First time loading: get the hidden original element
-  const originalContent = document.querySelector(`#tabs-cache > #${tabId}`) as HTMLElement | null;
+  function activateButton(btn) {
+    buttons.forEach((b) => b.classList.remove("bg-primary-text-color!","hover:bg-primary-text-color/80")); 
+    btn.classList.add("bg-primary-text-color!", "hover:bg-primary-text-color/80!");
+  }
 
-  if (!originalContent) return;
-
-  // Cache a cloned copy
-  const cloned = originalContent.cloneNode(true) as HTMLElement;
-  cacheStore.set(tabId, cloned);
-   originalContent.remove();
-  // Display one copy
-  tabContentArea.appendChild(cloned.cloneNode(true));
-}
-
-function activateButton(btn: HTMLButtonElement): void {
-  buttons.forEach((b) =>
-    b.classList.remove("bg-primary-text-color/80", "scale-105")
-  );
-  btn.classList.add("bg-primary-text-color/80", "scale-105");
-}
-
-// Setup click events
-buttons.forEach((btn: HTMLButtonElement) => {
-  btn.addEventListener("click", () => {
-    const tabId = btn.dataset.target;
-    if (!tabId) return;
-    activateButton(btn);
-    loadTab(tabId);
+  // Setup click events
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tabId = btn.dataset.target;
+      if (!tabId) return;
+      activateButton(btn);
+      loadTab(tabId);
+      console.log("load image");
+      
+      initGalleryImagesSwiper();
+    });
   });
-});
 
-// Load first tab by default
-if (buttons.length > 0) {
-  buttons[0].click();
+  // Load first tab by default
+  if (buttons.length > 0) {
+    buttons[0].click();
+  }
 }
-}
-
+document.addEventListener("DOMContentLoaded",function() {
+  initSwiperBtnGallery();
+})
