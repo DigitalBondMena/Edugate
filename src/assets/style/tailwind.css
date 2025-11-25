@@ -26,6 +26,9 @@
     font-weight: 400;
     position: relative;
     height: 100%;
+    &:has(:not(.sticky)) {
+      overflow-x:hidden
+    }
   }
 
   h1,

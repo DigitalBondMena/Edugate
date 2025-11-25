@@ -11,6 +11,8 @@ const initGalleryImagesSwiper = () => {
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
+          dynamicBullets: true,   
+          dynamicMainBullets: 3, 
         }
       });
   })
