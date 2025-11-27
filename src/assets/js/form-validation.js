@@ -172,6 +172,12 @@ const initMainListener = () => {
     input.value = input.value.replace(/[^0-9]/g,"")
   })
 })
+  document.querySelectorAll('.preventNumber').forEach(e => {
+  e.addEventListener("input",(e) => {
+    const input = e.target;
+    input.value = input.value.replace(/[0-9]/g,"")
+  })
+})
 }
 const initForm = () => {
   initFormValidation();
