@@ -64,6 +64,29 @@
   margin-inline: auto;
 }
 @layer components {
+  .dynamic-inputs-container{ 
+    position: relative;
+  }
+  .dynamic-inputs-container:has(> div:not(.hidden)) {
+  /* في حالة وجود أي عنصر ظاهر */
+  border-color: var(--color-primary-text-color);
+}
+
+.dynamic-inputs-container:not(:has(> div:not(.hidden))) {
+  border-color: var(--color-alternate-text-color);
+  &::after {
+    content: "No fields are available.";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    text-align: center;
+    color: red;
+  }
+}
+html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
+  content: "لا توجد حقول متاحة";
+}
   .main-title-ui {
     @apply text-main-title w-fit font-bold text-primary-text-color relative mb-5;
 
@@ -79,12 +102,45 @@
       transition: left 0.3s, right 0.3s;
     }
   }
+  .custom-scrollbar {
+  scrollbar-gutter: stable both-edges;
+}
+  .custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
 
-  /* [dir="rtl"] .main-title-ui::before {
-    left: auto;
-    right: 0;
-  } */
-   
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #83999215; /* لون شفاف من البديل */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1cb280; /* اللون الأساسي */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #f64148; /* لون نشيط */
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #1cb280 #83999215;
+  &::-ms-thumb {
+    border-radius: 20px;
+  }
+}
+
+  @media screen and (max-width: 640px) {
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none; /* IE & Edge */
+      scrollbar-width: none; /* Firefox */
+    }  
+  }
   .phone-input .iti {
     @apply w-full;
       .iti__selected-flag {

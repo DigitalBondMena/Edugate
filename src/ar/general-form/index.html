@@ -10,11 +10,6 @@
     />
     <link
       rel="preload"
-      href="../../assets/js/mobile-optimizer.js"
-      as="script"
-    />
-    <link
-      rel="preload"
       as="image"
       media="(max-width:600px)"
       href="../assets/images/home/hero/hero-600.jpg"
@@ -774,9 +769,9 @@
       </nav>
       <!-- ================== Start Navbar ================== -->
       <section class="py-28 lg:pb-60">
-        <div class="container md:px-20!">
+        <div class="container lg:px-20!">
           <div
-            class="relative p-5 pt-16 pb-36 md:px-16! z-10 rounded-2xl md:rounded-[70px]"
+            class="relative p-5 pt-16 pb-36 lg:px-16! z-10 rounded-2xl lg:rounded-[70px]"
           >
             <div class="img-bg absolute top-full -end-64" data-hide-mobile>
               <img
@@ -826,7 +821,7 @@
               <div
                 class="relative rounded-2xl md:rounded-[70px] z-10 border-2 bg-white shadow-sm py-4 border-primary-text-color/20 p-8 lg:p-10"
               >
-                <form id="studyForm" class="md:w-2/3 mx-auto max-h-[750px] overflow-y-auto px-1">
+                <form id="studyForm" class="md:w-2/3 mx-auto hide-scrollbar custom-scrollbar">
                   <div class="space-y-5">
                     <!-- Name -->
                     <div class="relative">
@@ -962,71 +957,84 @@
                     </div>
 
                     <!-- Dynamic Fields -->
-                    <div id="bachelorFields" class="space-y-4 hidden">
-                      <input
-                        type="text"
-                        id="academicBifurcationInput"
-                        placeholder="التشعيب الدراسي"
-                        class="main-input"
-                      />
-                      <small
-                        id="academicBifurcationError"
-                        class="text-red-500 text-sm opacity-0 transition-opacity"
-                        >التشعيب مطلوب</small
-                      >
+                     <div class="h-[150px] overflow-y-auto xl:overflow-visible  flex items-center justify-center dynamic-inputs-container border-2 border-dashed  rounded-2xl pt-16 xl:pt-5 p-5 ">
+                       <div id="bachelorFields" class="space-y-4 hidden">
+                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-2">
+                          <div>
+                            <input
+                              type="text"
+                              id="academicBifurcationInput"
+                              placeholder="التشعيب الدراسي"
+                              class="main-input"
+                            />
+                            <small
+                              id="academicBifurcationError"
+                              class="text-red-500 text-sm opacity-0 transition-opacity"
+                              >التشعيب مطلوب</small
+                            >
+                          </div>
+                          <div>
+                            <input
+                              type="text"
+                              id="academicAverageInput"
+                              placeholder="المعدل الدراسي"
+                              class="main-input"
+                            />
+                            <small
+                              id="academicAverageError"
+                              class="text-red-500 text-sm opacity-0 transition-opacity"
+                              >المعدل مطلوب</small
+                            >
+                          </div>
+                        </div>
+                       </div>
+   
+                       <div id="masterFields" class="space-y-4 hidden">
+                         <input
+                           type="text"
+                           id="BachelorsDegreeMajorInput"
+                           placeholder="تخصص البكالوريوس"
+                           class="main-input"
+                         />
+                         <small
+                           id="BachelorsDegreeMajorError"
+                           class="text-red-500 text-sm opacity-0 transition-opacity"
+                           >تخصص البكالوريوس مطلوب</small
+                         >
+                       </div>
+   
+                       <div id="doctorateFields" class="space-y-4 hidden">
+                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-2">
+                          <div>
+                            <input
+                              type="text"
+                              id="mastersDegreeMajorInput"
+                              placeholder="تخصص الماجستير"
+                              class="main-input"
+                            />
+                            <small
+                              id="mastersDegreeMajorError"
+                              class="text-red-500 text-sm opacity-0 transition-opacity"
+                              >تخصص الماجستير مطلوب</small
+                            >
+                          </div>
+    <div>
 
-                      <input
-                        type="text"
-                        id="academicAverageInput"
-                        placeholder="المعدل الدراسي"
-                        class="main-input"
-                      />
-                      <small
-                        id="academicAverageError"
-                        class="text-red-500 text-sm opacity-0 transition-opacity"
-                        >المعدل مطلوب</small
-                      >
-                    </div>
-
-                    <div id="masterFields" class="space-y-4 hidden">
-                      <input
-                        type="text"
-                        id="BachelorsDegreeMajorInput"
-                        placeholder="تخصص البكالوريوس"
-                        class="main-input"
-                      />
-                      <small
-                        id="BachelorsDegreeMajorError"
-                        class="text-red-500 text-sm opacity-0 transition-opacity"
-                        >تخصص البكالوريوس مطلوب</small
-                      >
-                    </div>
-
-                    <div id="doctorateFields" class="space-y-4 hidden">
-                      <input
-                        type="text"
-                        id="mastersDegreeMajorInput"
-                        placeholder="تخصص الماجستير"
-                        class="main-input"
-                      />
-                      <small
-                        id="mastersDegreeMajorError"
-                        class="text-red-500 text-sm opacity-0 transition-opacity"
-                        >تخصص الماجستير مطلوب</small
-                      >
-
-                      <input
-                        type="text"
-                        id="requiredSpecializationInput"
-                        placeholder="تخصص الدكتوراه"
-                        class="main-input"
-                      />
-                      <small
-                        id="requiredSpecializationError"
-                        class="text-red-500 text-sm opacity-0 transition-opacity"
-                        >تخصص الدكتوراه مطلوب</small
-                      >
-                    </div>
+      <input
+        type="text"
+        id="requiredSpecializationInput"
+        placeholder="تخصص الدكتوراه"
+        class="main-input"
+      />
+      <small
+        id="requiredSpecializationError"
+        class="text-red-500 text-sm opacity-0 transition-opacity"
+        >تخصص الدكتوراه مطلوب</small
+      >
+    </div>
+                        </div>
+                       </div>
+                     </div>
                     <div class="relative">
                       <input
                         type="text"
