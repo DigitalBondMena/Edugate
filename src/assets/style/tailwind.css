@@ -128,20 +128,6 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
   scrollbar-width: thin;
   scrollbar-color: #1cb280 #83999215;
 }
-.phone-input .iti__country-list {
-      @media (width >= 48rem) {
-        width: 400px;
-      }
-      @media (width >= 64rem) {
-        width: 430px;
-      }
-      @media (width >= 80rem) {
-        width: 570px;
-      }
-      @media (width >= 96rem) {
-        width: 790px;
-      }
-    }
   @media screen and (max-width: 640px) {
     .hide-scrollbar::-webkit-scrollbar {
       display: none;
@@ -162,6 +148,20 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
       .iti__country-list {
         @apply left-0 w-72 md:w-[670px] lg:w-[835px] xl:w-[360px] 2xl:w-[497px]
       }
+      .iti__country-list {
+      @media (width >= 48rem) {
+        width: 400px;
+      }
+      @media (width >= 64rem) {
+        width: 430px;
+      }
+      @media (width >= 80rem) {
+        width: 570px;
+      }
+      @media (width >= 96rem) {
+        width: 790px;
+      }
+    }
   }
   .main-description-ui {
     @apply text-description text-alternate-text-color text-justify;
@@ -170,9 +170,7 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
     @apply absolute inset-0 bg-primary-text-color/70;
     z-index: 1;
   }
-  .mySwiper {
-  @apply w-full
-}
+  
   .nav-link-underline {
     @apply relative inline-block;
     &::after {

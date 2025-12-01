@@ -52,13 +52,7 @@
       content="black-translucent"
     />
     <!-- Preload critical resources -->
-    <link
-      rel="preload"
-      crossorigin
-      as="style"
-      href="../vendors/swiper/swiper-bundle.min.css"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
+   
     <link
       rel="preload"
       crossorigin
@@ -74,6 +68,7 @@
       onload="this.onload=null;this.rel='stylesheet'"
       href="../assets/style/main.css"
     />
+    <link rel="stylesheet" href="../assets/style/home.css">
     <link
       rel="preload"
       as="font"
@@ -112,11 +107,6 @@
       /* allow immediate scrolling/rendering — loading screen will still show but won't block layout */
       body {
         overflow: visible;
-      }
-    </style>
-    <style>
-      .service-slider {
-        height: 180px !important;
       }
     </style>
     <title>Edugate - بوابتك للتعليم الدولي</title>
@@ -830,9 +820,8 @@
                   class="text-white max-h-[100px] custom-scrollbar overflow-y-auto mb-5 text-sub-title text-center lg:text-start font-medium w-full lg:max-w-[600px]"
                 >
                   اكتشف عالمك الدراسي الجديد، حيث تجد كل ما تحتاجه معنا و كل
-                  المعلومات عن الجامعات و التخصصات
-                  اكتشف عالمك الدراسي الجديد، حيث تجد كل ما تحتاجه معنا و كل
-                 
+                  المعلومات عن الجامعات و التخصصات اكتشف عالمك الدراسي الجديد،
+                  حيث تجد كل ما تحتاجه معنا و كل
                 </p>
 
                 <div
@@ -872,7 +861,10 @@
                     height="88"
                   />
                 </div>
-                <div class="main-description-ui pb-4 lg:pb-0 overflow-y-auto custom-scrollbar pe-1" style="max-height: 240px;">
+                <div
+                  class="main-description-ui pb-4 lg:pb-0 overflow-y-auto custom-scrollbar pe-1"
+                  style="max-height: 240px"
+                >
                   نخبة من الاستشاريين الأكاديميين و خبراء التعليم الدوليين
                   المعتمدين، متخصصين في مجال خدمات التعليم الدولي و الدراسة في
                   الخارج، التسويق التعليمي و تسويق البرامج التعليمية، إدارة
@@ -973,7 +965,7 @@
                       </p>
                       <p
                         class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl overflow-y-auto custom-scrollbar"
-                        style="height:85px"
+                        style="height: 85px"
                       >
                         دعم كامل في تجهيز الملفات، كتابة الخطابات، و التقديم على
                         أرقى الجامعات
@@ -1000,7 +992,7 @@
                       </p>
                       <div
                         class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl overflow-y-auto custom-scrollbar"
-                        style="height:85px"
+                        style="height: 85px"
                       >
                         تحسين المهارات في مجالات متنوعة كاللغة، الترجمة، وريادة
                         الأعمال
@@ -1026,7 +1018,7 @@
                       </p>
                       <div
                         class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl overflow-y-auto custom-scrollbar"
-                        style="height:85px"
+                        style="height: 85px"
                       >
                         نساعدك في اختيار التخصص و الجامعة المناسبة لمهاراتك و
                         طموحاتك
@@ -1052,7 +1044,7 @@
                       </p>
                       <div
                         class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl overflow-y-auto custom-scrollbar"
-                        style="height:85px"
+                        style="height: 85px"
                       >
                         نساعدك في اختيار التخصص و الجامعة المناسبة لمهاراتك و
                         طموحاتك
@@ -1364,15 +1356,14 @@
                         موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
                         الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
                         حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
-                        موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
-                        الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
-                        حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
-                        موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
-                        الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
-                        حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
+                        كل طالب سيشكل الحكم موقع مميز جدا و بيعطي فرص هائلة
+                        للطلاب و الحصول علي الدعم الكامل في تخصص بيوفر لهم
+                        الجامعات المستهدفة بشكل و حجم مختلف بيعبر عن خبرة بهذه
+                        الصدد و الحماس فنحن نؤمن ان كل طالب سيشكل الحكم موقع
+                        مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي الدعم
+                        الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و حجم
+                        مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان كل
+                        طالب سيشكل الحكم
                       </p>
                       <div class="mt-auto flex gap-5 items-center justify-end">
                         <div>
@@ -1405,15 +1396,14 @@
                         موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
                         الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
                         حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
-                        موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
-                        الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
-                        حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
-                        موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
-                        الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
-                        حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
+                        كل طالب سيشكل الحكم موقع مميز جدا و بيعطي فرص هائلة
+                        للطلاب و الحصول علي الدعم الكامل في تخصص بيوفر لهم
+                        الجامعات المستهدفة بشكل و حجم مختلف بيعبر عن خبرة بهذه
+                        الصدد و الحماس فنحن نؤمن ان كل طالب سيشكل الحكم موقع
+                        مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي الدعم
+                        الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و حجم
+                        مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان كل
+                        طالب سيشكل الحكم
                       </p>
                       <div class="mt-auto flex gap-5 items-center justify-end">
                         <div>
@@ -1445,15 +1435,14 @@
                         موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
                         الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
                         حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
-                        موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
-                        الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
-                        حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
-                        موقع مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي
-                        الدعم الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و
-                        حجم مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان
-                        كل طالب سيشكل الحكم
+                        كل طالب سيشكل الحكم موقع مميز جدا و بيعطي فرص هائلة
+                        للطلاب و الحصول علي الدعم الكامل في تخصص بيوفر لهم
+                        الجامعات المستهدفة بشكل و حجم مختلف بيعبر عن خبرة بهذه
+                        الصدد و الحماس فنحن نؤمن ان كل طالب سيشكل الحكم موقع
+                        مميز جدا و بيعطي فرص هائلة للطلاب و الحصول علي الدعم
+                        الكامل في تخصص بيوفر لهم الجامعات المستهدفة بشكل و حجم
+                        مختلف بيعبر عن خبرة بهذه الصدد و الحماس فنحن نؤمن ان كل
+                        طالب سيشكل الحكم
                       </p>
                       <div class="mt-auto flex gap-5 items-center justify-end">
                         <div>
@@ -1554,7 +1543,9 @@
                 class="relative z-20 px-5 py-15 md:ps-15 md:pe-25 h-full flex flex-col justify-center"
               >
                 <h5 class="text-white main-title-ui before:bg-white">الاراء</h5>
-                <p class="text-white mb-6 text-description text-justify lg:max-h-[210px] lg:overflow-y-auto">
+                <p
+                  class="text-white mb-6 text-description text-justify lg:max-h-[210px] lg:overflow-y-auto"
+                >
                   نخبة من الاستشاريين الأكاديميين و خبراء التعليم الدوليين
                   المعتمدين، متخصصين في مجال خدمات التعليم الدولي و الدراسة في
                   الخارج، التسويق التعليمي و تسويق البرامج التعليمية، إدارة
@@ -1640,9 +1631,15 @@
       <!-- ================== Blogs ================== -->
       <section class="pb-[200px]">
         <h6
-          class="main-title-ui mx-auto mb-20 before:left-0 before:w-[20%] relative      after:top-0"
+          class="main-title-ui mx-auto mb-20 before:left-0 before:w-[20%] relative after:top-0"
         >
-        <img src="../assets/images/home/blogs/pin.svg" role="presentation" loading="lazy" decoding="async" class="absolute start-0 translate-x-[65%] w-10 h-10 ltr:-translate-x-[65%] translate-y-[-20%]">
+          <img
+            src="../assets/images/home/blogs/pin.svg"
+            role="presentation"
+            loading="lazy"
+            decoding="async"
+            class="absolute start-0 translate-x-[65%] w-10 h-10 ltr:-translate-x-[65%] translate-y-[-20%]"
+          />
           بعض المقالات الهامه
         </h6>
 
@@ -1650,122 +1647,126 @@
           <div
             class="grid grid-cols-1 gap-x-8 gap-y-5 md:grid-cols-2 lg:grid-cols-3"
           >
-            
             <article
               class="blog [content-visibility:auto] group shadow-md rounded-[25px] overflow-hidden [contain-intrinsic-size:350px]"
             >
-            <a href="./blog-details/index.html" class="">
-              <div class="overflow-hidden w-full aspect-2/1 relative">
-                <img
-                  class="h-full group-hover:scale-110 duration-500 w-full object-cover"
-                  src="../assets/images/home/blogs/blogs.webp"
-                  alt="Blog Featured Image"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div
-                  class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
-                >
-                  <span class="text-white text-[14px] capitalize">
-                    9 aug 2025
-                  </span>
+              <a href="./blog-details/index.html" class="">
+                <div class="overflow-hidden w-full aspect-2/1 relative">
+                  <img
+                    class="h-full group-hover:scale-110 duration-500 w-full object-cover"
+                    src="../assets/images/home/blogs/blogs.webp"
+                    alt="Blog Featured Image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div
+                    class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
+                  >
+                    <span class="text-white text-[14px] capitalize">
+                      9 aug 2025
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div class="content bg-white py-4 px-3">
-                <h4
-                  title=" التعليم في الخارج"
-                  class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
-                >
-                  التعليم في الخارج
-                </h4>
-                <p class="line-clamp-2 text-sm text-alternate-text-color mb-2" title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج">
-                  اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج
-                </p>
-                <span
-                  class="block text-primary-text-color mb-2 font-light"
-                >
-                  المزيد ...</
-                >
-              </div>
-            </a>
-          </article>
+                <div class="content bg-white py-4 px-3">
+                  <h4
+                    title=" التعليم في الخارج"
+                    class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
+                  >
+                    التعليم في الخارج
+                  </h4>
+                  <p
+                    class="line-clamp-2 text-sm text-alternate-text-color mb-2"
+                    title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج"
+                  >
+                    اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في
+                    الخارج
+                  </p>
+                  <span class="block text-primary-text-color mb-2 font-light">
+                    المزيد ...</span
+                  >
+                </div>
+              </a>
+            </article>
             <article
               class="blog [content-visibility:auto] group shadow-md rounded-[25px] overflow-hidden [contain-intrinsic-size:350px]"
             >
-            <a href="./blog-details/index.html" class="">
-              <div class="overflow-hidden w-full aspect-2/1 relative">
-                <img
-                  class="h-full group-hover:scale-110 duration-500 w-full object-cover"
-                  src="../assets/images/home/blogs/blogs.webp"
-                  alt="Blog Featured Image"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div
-                  class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
-                >
-                  <span class="text-white text-[14px] capitalize">
-                    9 aug 2025
-                  </span>
+              <a href="./blog-details/index.html" class="">
+                <div class="overflow-hidden w-full aspect-2/1 relative">
+                  <img
+                    class="h-full group-hover:scale-110 duration-500 w-full object-cover"
+                    src="../assets/images/home/blogs/blogs.webp"
+                    alt="Blog Featured Image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div
+                    class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
+                  >
+                    <span class="text-white text-[14px] capitalize">
+                      9 aug 2025
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div class="content bg-white py-4 px-3">
-                <h4
-                  title=" التعليم في الخارج"
-                  class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
-                >
-                  التعليم في الخارج
-                </h4>
-                <p class="line-clamp-2 text-sm text-alternate-text-color mb-2" title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج">
-                  اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج
-                </p>
-                <span
-                  class="block text-primary-text-color mb-2 font-light"
-                >
-                  المزيد ...</
-                >
-              </div>
-            </a>
-          </article>
+                <div class="content bg-white py-4 px-3">
+                  <h4
+                    title=" التعليم في الخارج"
+                    class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
+                  >
+                    التعليم في الخارج
+                  </h4>
+                  <p
+                    class="line-clamp-2 text-sm text-alternate-text-color mb-2"
+                    title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج"
+                  >
+                    اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في
+                    الخارج
+                  </p>
+                  <span class="block text-primary-text-color mb-2 font-light">
+                    المزيد ...</span
+                  >
+                </div>
+              </a>
+            </article>
             <article
               class="blog [content-visibility:auto] group shadow-md rounded-[25px] overflow-hidden [contain-intrinsic-size:350px]"
             >
-            <a href="./blog-details/index.html" class="">
-              <div class="overflow-hidden w-full aspect-2/1 relative">
-                <img
-                  class="h-full group-hover:scale-110 duration-500 w-full object-cover"
-                  src="../assets/images/home/blogs/blogs.webp"
-                  alt="Blog Featured Image"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div
-                  class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
-                >
-                  <span class="text-white text-[14px] capitalize">
-                    9 aug 2025
-                  </span>
+              <a href="./blog-details/index.html" class="">
+                <div class="overflow-hidden w-full aspect-2/1 relative">
+                  <img
+                    class="h-full group-hover:scale-110 duration-500 w-full object-cover"
+                    src="../assets/images/home/blogs/blogs.webp"
+                    alt="Blog Featured Image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div
+                    class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
+                  >
+                    <span class="text-white text-[14px] capitalize">
+                      9 aug 2025
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div class="content bg-white py-4 px-3">
-                <h4
-                  title=" التعليم في الخارج"
-                  class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
-                >
-                  التعليم في الخارج
-                </h4>
-                <p class="line-clamp-2 text-sm text-alternate-text-color mb-2" title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج">
-                  اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج
-                </p>
-                <span
-                  class="block text-primary-text-color mb-2 font-light"
-                >
-                  المزيد ...</
-                >
-              </div>
-            </a>
-          </article>
-            
+                <div class="content bg-white py-4 px-3">
+                  <h4
+                    title=" التعليم في الخارج"
+                    class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
+                  >
+                    التعليم في الخارج
+                  </h4>
+                  <p
+                    class="line-clamp-2 text-sm text-alternate-text-color mb-2"
+                    title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج"
+                  >
+                    اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في
+                    الخارج
+                  </p>
+                  <span class="block text-primary-text-color mb-2 font-light">
+                    المزيد ...</span
+                  >
+                </div>
+              </a>
+            </article>
           </div>
         </div>
       </section>
