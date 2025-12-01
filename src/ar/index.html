@@ -50,11 +50,17 @@
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
+    <!-- fonts -->
+     <link
+      rel="preload"
+      as="font"
+      href="../assets/fonts/alexandria/Alexandria-Regular.woff2"
+      type="font/woff2"
+      crossorigin
+    />
     <!-- Preload critical resources -->
-   
     <link
       rel="preload"
-      crossorigin
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
       href="../assets/style/rtl.css"
@@ -62,19 +68,12 @@
     <link rel="stylesheet" href="../assets/style/style.css" />
     <link
       rel="preload"
-      crossorigin
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
       href="../assets/style/main.css"
     />
-    <link rel="stylesheet" href="../assets/style/home.css">
-    <link
-      rel="preload"
-      as="font"
-      href="../assets/fonts/alexandria/Alexandria-Regular.woff2"
-      type="font/woff2"
-      crossorigin
-    />
+    <link rel="stylesheet" media="print" href="../assets/style/home.css" onload="this.media='all'">
+    
     <!-- Load main CSS asynchronously -->
     <style>
       /* Loading screen critical styles */
