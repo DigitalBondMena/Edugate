@@ -88,7 +88,7 @@
   .phone-input .iti {
     @apply w-full;
       .iti__selected-flag {
-        @apply bg-[#849992]! text-white flex-row-reverse gap-2 rounded-e-[25px] overflow-hidden ;
+        @apply bg-[#849992]! text-white flex-row-reverse  gap-2 rounded-l-[25px] overflow-hidden ;
         .iti__arrow {
           display: none
         }

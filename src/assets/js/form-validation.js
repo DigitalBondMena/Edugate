@@ -166,7 +166,7 @@ function initFormValidation(opts) {
   });
 }
 const initMainListener = () => {
-  document.querySelectorAll('[type="number"],[type="tel"]').forEach(e => {
+  document.querySelectorAll('[type="number"],[type="tel"],.preventText').forEach(e => {
   e.addEventListener("input",(e) => {
     const input = e.target;
     input.value = input.value.replace(/[^0-9]/g,"")
