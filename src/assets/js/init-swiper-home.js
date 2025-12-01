@@ -9,10 +9,10 @@ function initSwiperHome() {
         updateOnWindowResize:true,
         observer: true,
   observeParents: true,
-        // autoplay:{
-        //   pauseOnMouseEnter:true,
-        //   delay:5000
-        // },
+        autoplay:{
+          pauseOnMouseEnter:true,
+          delay:5000
+        },
         breakpoints:{
           1024:{
             direction: "vertical",
