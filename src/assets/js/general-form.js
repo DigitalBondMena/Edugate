@@ -80,33 +80,33 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener("blur", validateAndToggle);
   }
 
-  setupRealTimeValidation(inputs.name, validateName, errors.name);
-  setupRealTimeValidation(inputs.AcademicSpecialization, validateAcademicSpecialization, errors.AcademicSpecialization);
-  setupRealTimeValidation(inputs.email, validateEmail, errors.email);
-  setupRealTimeValidation(inputs.nationality, validateNationality, errors.nationality);
+  setupRealTimeValidation(inputs.name, validateName, errors?.name);
+  setupRealTimeValidation(inputs.AcademicSpecialization, validateAcademicSpecialization, errors?.AcademicSpecialization);
+  setupRealTimeValidation(inputs.email, validateEmail, errors?.email);
+  setupRealTimeValidation(inputs.nationality, validateNationality, errors?.nationality);
   // Country select real-time validation
   if (inputs.country) {
     inputs.country.addEventListener("change", () => {
-      toggleError(errors.country, validateCountry(inputs.country.value));
+      toggleError(errors?.country, validateCountry(inputs?.country.value));
     });
   }
-  inputs.phone.addEventListener("blur", () => toggleError(errors.phone, validatePhone()));
-  inputs.phone.addEventListener("input", () => toggleError(errors.phone, validatePhone()));
+  inputs.phone.addEventListener("blur", () => toggleError(errors?.phone, validatePhone()));
+  inputs.phone.addEventListener("input", () => toggleError(errors?.phone, validatePhone()));
 
   studyType.addEventListener("change", () => {
-    toggleError(errors.studyType, validateStudyType(studyType.value));
+    toggleError(errors?.studyType, validateStudyType(studyType?.value));
   });
 
   // ✅ Dynamic fields real-time
   function setupDynamicValidation() {
-    if (studyType.value === "bachelor") {
-      setupRealTimeValidation(inputs.academicBifurcation, validateNotEmpty, errors.academicBifurcation);
-      setupRealTimeValidation(inputs.academicAverage, validateNotEmpty, errors.academicAverage);
+    if (studyType?.value === "bachelor") {
+      setupRealTimeValidation(inputs.academicBifurcation, validateNotEmpty, errors?.academicBifurcation);
+      setupRealTimeValidation(inputs.academicAverage, validateNotEmpty, errors?.academicAverage);
     } else if (studyType.value === "master") {
-      setupRealTimeValidation(inputs.BachelorsDegreeMajor, validateNotEmpty, errors.BachelorsDegreeMajor);
+      setupRealTimeValidation(inputs.BachelorsDegreeMajor, validateNotEmpty, errors?.BachelorsDegreeMajor);
     } else if (studyType.value === "doctorate") {
-      setupRealTimeValidation(inputs.mastersDegreeMajor, validateNotEmpty, errors.mastersDegreeMajor);
-      setupRealTimeValidation(inputs.requiredSpecialization, validateNotEmpty, errors.requiredSpecialization);
+      setupRealTimeValidation(inputs.mastersDegreeMajor, validateNotEmpty, errors?.mastersDegreeMajor);
+      setupRealTimeValidation(inputs.requiredSpecialization, validateNotEmpty, errors?.requiredSpecialization);
     }
   }
 
@@ -124,28 +124,28 @@ document.addEventListener("DOMContentLoaded", function () {
       studyType: validateStudyType(studyType.value),
     };
 
-    toggleError(errors.name, isValid.name);
-    toggleError(errors.AcademicSpecialization, isValid.AcademicSpecialization);
-    toggleError(errors.email, isValid.email);
-    toggleError(errors.phone, isValid.phone);
-    toggleError(errors.nationality, isValid.nationality);
-    toggleError(errors.country, isValid.country);
-    toggleError(errors.studyType, isValid.studyType);
+    toggleError(errors?.name, isValid?.name);
+    toggleError(errors?.AcademicSpecialization, isValid?.AcademicSpecialization);
+    toggleError(errors?.email, isValid?.email);
+    toggleError(errors?.phone, isValid?.phone);
+    toggleError(errors?.nationality, isValid?.nationality);
+    toggleError(errors?.country, isValid?.country);
+    toggleError(errors?.studyType, isValid?.studyType);
 
     // Dynamic fields validation on submit
     if (studyType.value === "bachelor") {
       isValid.academicBifurcation = validateNotEmpty(inputs.academicBifurcation.value);
       isValid.academicAverage = validateNotEmpty(inputs.academicAverage.value);
-      toggleError(errors.academicBifurcation, isValid.academicBifurcation);
-      toggleError(errors.academicAverage, isValid.academicAverage);
+      toggleError(errors?.academicBifurcation, isValid?.academicBifurcation);
+      toggleError(errors?.academicAverage, isValid?.academicAverage);
     } else if (studyType.value === "master") {
       isValid.BachelorsDegreeMajor = validateNotEmpty(inputs.BachelorsDegreeMajor.value);
-      toggleError(errors.BachelorsDegreeMajor, isValid.BachelorsDegreeMajor);
+      toggleError(errors?.BachelorsDegreeMajor, isValid?.BachelorsDegreeMajor);
     } else if (studyType.value === "doctorate") {
       isValid.mastersDegreeMajor = validateNotEmpty(inputs.mastersDegreeMajor.value);
       isValid.requiredSpecialization = validateNotEmpty(inputs.requiredSpecialization.value);
-      toggleError(errors.mastersDegreeMajor, isValid.mastersDegreeMajor);
-      toggleError(errors.requiredSpecialization, isValid.requiredSpecialization);
+      toggleError(errors?.mastersDegreeMajor, isValid?.mastersDegreeMajor);
+      toggleError(errors?.requiredSpecialization, isValid?.requiredSpecialization);
     }
 
     if (Object.values(isValid).includes(false)) {

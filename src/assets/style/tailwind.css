@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @theme {
   /* Text Variables */
-  --text-main-title: calc(2.8125rem * 1); /* 45px */
+  --text-main-title: clamp(1.5rem,2.5vw,2.8125rem); /* 45px */
   --text-sub-title: calc(1.25rem * 1); /* 20px */
   --text-description: calc(1.125rem * 1); /* 18px */
   /* Colors Variables */
@@ -127,11 +127,21 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #1cb280 #83999215;
-  &::-ms-thumb {
-    border-radius: 20px;
-  }
 }
-
+.phone-input .iti__country-list {
+      @media (width >= 48rem) {
+        width: 400px;
+      }
+      @media (width >= 64rem) {
+        width: 430px;
+      }
+      @media (width >= 80rem) {
+        width: 570px;
+      }
+      @media (width >= 96rem) {
+        width: 790px;
+      }
+    }
   @media screen and (max-width: 640px) {
     .hide-scrollbar::-webkit-scrollbar {
       display: none;
@@ -156,7 +166,6 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
   .main-description-ui {
     @apply text-description text-alternate-text-color text-justify;
   }
-
   .custom-overlay {
     @apply absolute inset-0 bg-primary-text-color/70;
     z-index: 1;
