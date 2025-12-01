@@ -163,3 +163,18 @@ document.addEventListener("DOMContentLoaded", function () {
     
   });
 });
+const initMainListener = () => {
+  document.querySelectorAll('[type="number"],[type="tel"],.preventText').forEach(e => {
+  e.addEventListener("input",(e) => {
+    const input = e.target;
+    input.value = input.value.replace(/[^0-9]/g,"")
+  })
+})
+  document.querySelectorAll('.preventNumber').forEach(e => {
+  e.addEventListener("input",(e) => {
+    const input = e.target;
+    input.value = input.value.replace(/[0-9]/g,"")
+  })
+})
+}
+initMainListener();
