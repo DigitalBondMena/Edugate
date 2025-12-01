@@ -25,7 +25,6 @@ class LoadingScreenManager {
     if (window.PerformanceObserver && !this.isSafari() && !this.isIOS()){
       new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
-        console.log(entries);
         const lastEntry = entries[entries.length - 1];
         if (lastEntry) {
           requestAnimationFrame(() => this.close());
