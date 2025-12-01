@@ -759,6 +759,9 @@
   .h-\[2px\] {
     height: 2px;
   }
+  .h-\[50\] {
+    height: 50;
+  }
   .h-\[80\%\] {
     height: 80%;
   }
@@ -1637,6 +1640,9 @@
   }
   .ps-10 {
     padding-inline-start: calc(var(--spacing) * 10);
+  }
+  .pe-1 {
+    padding-inline-end: calc(var(--spacing) * 1);
   }
   .pe-2 {
     padding-inline-end: calc(var(--spacing) * 2);

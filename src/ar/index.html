@@ -114,6 +114,11 @@
         overflow: visible;
       }
     </style>
+    <style>
+      .service-slider {
+        height: 170px !important;
+      }
+    </style>
     <title>Edugate - بوابتك للتعليم الدولي</title>
   </head>
 
@@ -827,9 +832,7 @@
                   اكتشف عالمك الدراسي الجديد، حيث تجد كل ما تحتاجه معنا و كل
                   المعلومات عن الجامعات و التخصصات
                   اكتشف عالمك الدراسي الجديد، حيث تجد كل ما تحتاجه معنا و كل
-                  المعلومات عن الجامعات و التخصصات
-                  اكتشف عالمك الدراسي الجديد، حيث تجد كل ما تحتاجه معنا و كل
-                  المعلومات عن الجامعات و التخصصات
+                 
                 </p>
 
                 <div
@@ -869,7 +872,13 @@
                     height="88"
                   />
                 </div>
-                <div class="main-description-ui pb-4 lg:pb-0">
+                <div class="main-description-ui pb-4 lg:pb-0 overflow-y-auto custom-scrollbar pe-1" style="max-height: 240px;">
+                  نخبة من الاستشاريين الأكاديميين و خبراء التعليم الدوليين
+                  المعتمدين، متخصصين في مجال خدمات التعليم الدولي و الدراسة في
+                  الخارج، التسويق التعليمي و تسويق البرامج التعليمية، إدارة
+                  القبولات الجامعية، و تأمين القبولات المعتمدة في الجامعات
+                  الموصى بها دوليا و المصنفة عالميا. و تعتبر إديوجيت من أهم
+                  الشركات التي ساهمت في دعم طلاب الوطن العربي و طلاب الخليج.
                   نخبة من الاستشاريين الأكاديميين و خبراء التعليم الدوليين
                   المعتمدين، متخصصين في مجال خدمات التعليم الدولي و الدراسة في
                   الخارج، التسويق التعليمي و تسويق البرامج التعليمية، إدارة
@@ -944,7 +953,7 @@
             >
               <div class="swiper mySwiper lg:h-[500px] relative">
                 <div class="swiper-wrapper overflow-visible! h-full px-1">
-                  <div class="swiper-slide h-auto">
+                  <div class="swiper-slide service-slider">
                     <div class="item h-full flex flex-col">
                       <span>
                         <img
@@ -954,6 +963,7 @@
                           role="presentation"
                           loading="lazy"
                           decoding="async"
+                          class="h-[50]"
                         />
                       </span>
                       <p
@@ -969,7 +979,7 @@
                       </p>
                     </div>
                   </div>
-                  <div class="swiper-slide h-auto">
+                  <div class="swiper-slide service-slider">
                     <div class="item h-full flex flex-col">
                       <span>
                         <img
@@ -995,7 +1005,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-slide h-auto">
+                  <div class="swiper-slide service-slider">
                     <div class="item h-full flex flex-col">
                       <span>
                         <img
@@ -1020,7 +1030,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-slide h-auto">
+                  <div class="swiper-slide service-slider">
                     <div class="item h-full flex flex-col">
                       <span>
                         <img

@@ -4,19 +4,20 @@ function initSwiperHome() {
     if (swiperElement) {
       const swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
+        autoHeight: false,
         loop:true,
         updateOnWindowResize:true,
         observer: true,
   observeParents: true,
-        autoplay:{
-          pauseOnMouseEnter:true,
-          delay:5000
-        },
+        // autoplay:{
+        //   pauseOnMouseEnter:true,
+        //   delay:5000
+        // },
         breakpoints:{
           1024:{
             direction: "vertical",
             slidesPerView: 3,
-            spaceBetween: 150,
+            spaceBetween: 10,
           }
         }
       });
