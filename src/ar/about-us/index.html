@@ -824,9 +824,9 @@
             </div>
             <div
               id="about-content"
-              class="main-description-ui leading-11 editor-ui relative p-7 border-primary-text-color border-3 rounded-[35px] lg:pe-80"
+              class="main-description-ui text-start leading-11 editor-ui relative p-7 border-primary-text-color border-3 rounded-[35px] lg:pe-70"
             >
-              <div class="max-h-[460px] overflow-y-auto pe-2">
+              <div class="overflow-y-auto overflow-x-hidden pe-2" style="max-height: 460px;">
                 <!-- Content will be injected here from backend/text editor -->
                 <!-- !this class width will be removed after the content is injected -->
                 <p class="leading-11">
@@ -1141,7 +1141,7 @@
 
         <!-- ================== Blogs ================== -->
         <!-- take it from home -->
-        <section class="pb-[150px] pt-10">
+        <section class="pb-[200px] pt-10">
           <h6
             class="main-title-ui mx-auto mb-20 before:left-0 before:w-[20%] relative after:top-0"
           >
@@ -1159,118 +1159,135 @@
             <div
               class="grid grid-cols-1 gap-x-8 gap-y-5 md:grid-cols-2 lg:grid-cols-3"
             >
-              <div class="blog shadow-md rounded-[25px] overflow-hidden">
-                <figure class="overflow-hidden w-full h-[350px] relative">
-                  <img
-                    class="h-full w-full"
-                    src="../../assets/images/home/blogs/blogs.webp"
-                    alt="Blog Featured Image"
-                    loading="lazy"
-                  />
-                  <div
-                    class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
-                  >
-                    <span class="text-white text-[14px] capitalize">
-                      9 aug 2025
-                    </span>
-                  </div>
-                </figure>
-                <div class="content bg-white py-4 px-3">
-                  <a
-                    href=""
-                    class="text-primary-text-color text-sub-title mb-4 block font-medium"
-                  >
-                    التعليم في الخارج
-                  </a>
-                  <p
-                    class="line-clamp-2 text-description text-alternate-text-color mb-2"
-                  >
-                    اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في
-                    الخارج
-                  </p>
-                  <a
-                    href=""
-                    class="block text-primary-text-color mb-2 font-light"
-                  >
-                    المزيد ...</a
-                  >
+              <article
+              class="blog [content-visibility:auto] group shadow-md rounded-[25px] overflow-hidden [contain-intrinsic-size:350px]"
+            >
+            <a href="../blog-details/index.html" >
+              <div class="overflow-hidden w-full aspect-2/1 relative">
+                <img
+                  class="h-full group-hover:scale-110 duration-500 w-full object-cover"
+                  src="../../assets/images/home/blogs/blogs.webp"
+                  alt="Blog Featured Image"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div
+                  class="img-date absolute left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px] bottom-2.5"
+                >
+                  <span class="text-white text-[14px] capitalize">
+                    9 aug 2025
+                  </span>
                 </div>
               </div>
-              <div class="blog shadow-md rounded-[25px] overflow-hidden">
-                <figure class="overflow-hidden w-full h-[350px] relative">
-                  <img
-                    class="h-full w-full object-cover"
-                    src="../../assets/images/home/blogs/blogs.webp"
-                    alt="Blog Featured Image"
-                    loading="lazy"
-                  />
-                  <div
-                    class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
-                  >
-                    <span class="text-white text-[14px] capitalize">
-                      9 aug 2025
-                    </span>
-                  </div>
-                </figure>
-                <div class="content bg-white py-4 px-3">
-                  <a
-                    href=""
-                    class="text-primary-text-color text-sub-title mb-4 block font-medium"
-                  >
-                    التعليم في الخارج
-                  </a>
-                  <p
-                    class="line-clamp-2 text-description text-alternate-text-color mb-2"
-                  >
-                    اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في
-                    الخارج
-                  </p>
-                  <a
-                    href=""
-                    class="block text-primary-text-color mb-2 font-light"
-                  >
-                    المزيد ...</a
-                  >
+              <div class="content bg-white py-4 px-3">
+                <h4
+                  title=" التعليم في الخارج"
+                  class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
+                >
+                  التعليم في الخارج
+                </h4>
+                <p class="line-clamp-2 text-sm text-alternate-text-color mb-2" title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج">
+                  اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج
+                </p>
+                <span
+                  class="block text-primary-text-color mb-2 font-light"
+                >
+                  المزيد ...</
+                >
+              </div>
+            </a>
+          </article>
+              <article
+              class="blog [content-visibility:auto] group shadow-md rounded-[25px] overflow-hidden [contain-intrinsic-size:350px]"
+            >
+            <a href="../blog-details/index.html" >
+              <div class="overflow-hidden w-full aspect-2/1 relative">
+                <img
+                  class="h-full group-hover:scale-110 duration-500 w-full object-cover"
+                  src="../../assets/images/home/blogs/blogs.webp"
+                  alt="Blog Featured Image"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div
+                  class="img-date absolute left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px] bottom-2.5"
+                >
+                  <span class="text-white text-[14px] capitalize">
+                    9 aug 2025
+                  </span>
                 </div>
               </div>
-              <div class="blog shadow-md rounded-[25px] overflow-hidden">
-                <figure class="overflow-hidden w-full h-[350px] relative">
-                  <img
-                    class="h-full w-full"
-                    src="../../assets/images/home/blogs/blogs.webp"
-                    alt="Blog Featured Image"
-                    loading="lazy"
-                  />
-                  <div
-                    class="img-date absolute top-[125px] left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px]"
-                  >
-                    <span class="text-white text-[14px] capitalize">
-                      9 aug 2025
-                    </span>
-                  </div>
-                </figure>
-                <div class="content bg-white py-4 px-3">
-                  <a
-                    href=""
-                    class="text-primary-text-color text-sub-title mb-4 block font-medium"
-                  >
-                    التعليم في الخارج
-                  </a>
-                  <p
-                    class="line-clamp-2 text-description text-alternate-text-color mb-2"
-                  >
-                    اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في
-                    الخارج
-                  </p>
-                  <a
-                    href=""
-                    class="block text-primary-text-color mb-2 font-light"
-                  >
-                    المزيد ...</a
-                  >
+              <div class="content bg-white py-4 px-3">
+                <h4
+                  title=" التعليم في الخارج"
+                  class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
+                >
+                  التعليم في الخارج
+                </h4>
+                <p class="line-clamp-2 text-sm text-alternate-text-color mb-2" title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج">
+                  اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج
+                </p>
+                <span
+                  class="block text-primary-text-color mb-2 font-light"
+                >
+                  المزيد ...</
+                >
+              </div>
+            </a>
+          </article>
+              <article
+              class="blog [content-visibility:auto] group shadow-md rounded-[25px] overflow-hidden [contain-intrinsic-size:350px]"
+            >
+            <a href="../blog-details/index.html" >
+              <div class="overflow-hidden w-full aspect-2/1 relative">
+                <img
+                  class="h-full group-hover:scale-110 duration-500 w-full object-cover"
+                  src="../../assets/images/home/blogs/blogs.webp"
+                  alt="Blog Featured Image"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div
+                  class="img-date absolute left-0 p-2 font-medium bg-primary-text-color rounded-tr-[25px] bottom-2.5"
+                >
+                  <span class="text-white text-[14px] capitalize">
+                    9 aug 2025
+                  </span>
                 </div>
               </div>
+              <div class="content bg-white py-4 px-3">
+                <h4
+                  title=" التعليم في الخارج"
+                  class="text-primary-text-color text-sub-title mb-4 block font-medium line-clamp-1"
+                >
+                  التعليم في الخارج
+                </h4>
+                <p class="line-clamp-2 text-sm text-alternate-text-color mb-2" title=" اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج">
+                  اصبح الكثير من طلاب الدول العربية يرغبون في الدراسة في الخارج
+                </p>
+                <span
+                  class="block text-primary-text-color mb-2 font-light"
+                >
+                  المزيد ...</
+                >
+              </div>
+            </a>
+          </article>
             </div>
+            
+        <div
+          data-hide-mobile
+          class="img-bg absolute bottom-0 end-12 -translate-x-1/2 translate-y-full rtl:-scale-x-[1]"
+        >
+          <img
+            width="481"
+            height="207"
+            src="../../assets/images/home/counter/arrow.svg"
+            role="presentation"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
           </div>
         </section>
         <!-- ================== Start Footer ================== -->
