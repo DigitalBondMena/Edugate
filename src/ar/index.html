@@ -51,7 +51,7 @@
       content="black-translucent"
     />
     <!-- fonts -->
-     <link
+    <link
       rel="preload"
       as="font"
       href="../assets/fonts/alexandria/Alexandria-Regular.woff2"
@@ -72,8 +72,13 @@
       onload="this.onload=null;this.rel='stylesheet'"
       href="../assets/style/main.css"
     />
-    <link rel="stylesheet" media="print" href="../assets/style/home.css" onload="this.media='all'">
-    
+    <link
+      rel="stylesheet"
+      media="print"
+      href="../assets/style/home.css"
+      onload="this.media='all'"
+    />
+
     <!-- Load main CSS asynchronously -->
     <style>
       /* Loading screen critical styles */
@@ -930,7 +935,8 @@
                   <h3 class="main-title-ui">خدماتنا</h3>
                 </div>
                 <div
-                  class="text-description text-alternate-text-color max-w-[80%] overflow-y-auto" style="max-height:100px"
+                  class="text-description text-alternate-text-color max-w-[80%] overflow-y-auto"
+                  style="max-height: 100px"
                 >
                   نقدم لك مجموعة متكاملة من الخدمات التعليمية المصممة خصيصاً
                   لتناسب احتياجاتك الأكاديمية والمهنية. وتشمل:
@@ -962,12 +968,14 @@
                       </p>
                       <div
                         class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl"
-                        
                       >
-                      <div class="overflow-y-auto custom-scrollbar" style="height: 85px">
-                        دعم كامل في تجهيز الملفات، كتابة الخطابات، و التقديم على
-                        أرقى الجامعات
-                      </div>
+                        <div
+                          class="overflow-y-auto custom-scrollbar"
+                          style="height: 85px"
+                        >
+                          دعم كامل في تجهيز الملفات، كتابة الخطابات، و التقديم
+                          على أرقى الجامعات
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -991,12 +999,14 @@
                       </p>
                       <div
                         class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl"
-                        
                       >
-                      <div class="overflow-y-auto custom-scrollbar" style="height: 85px">
-                        تحسين المهارات في مجالات متنوعة كاللغة، الترجمة، وريادة
-                        الأعمال
-                      </div>
+                        <div
+                          class="overflow-y-auto custom-scrollbar"
+                          style="height: 85px"
+                        >
+                          تحسين المهارات في مجالات متنوعة كاللغة، الترجمة،
+                          وريادة الأعمال
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1017,15 +1027,17 @@
                       >
                         استشارات أكاديمية مخصصة
                       </p>
+                      <div
+                        class="inner w-[98%] text-alternate-text-color text-description border-2 p-3 rounded-xl"
+                      >
                         <div
-                          class="inner w-[98%] text-alternate-text-color text-description border-2 p-3 rounded-xl"
-                          
+                          class="overflow-y-auto custom-scrollbar"
+                          style="height: 85px"
                         >
-                        <div class="overflow-y-auto custom-scrollbar" style="height: 85px">
                           نساعدك في اختيار التخصص و الجامعة المناسبة لمهاراتك و
                           طموحاتك
                         </div>
-                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="swiper-slide service-slider">
@@ -1047,15 +1059,16 @@
                       </p>
                       <div class="overflow-y-auto custom-scrollbar"></div>
                       <div
-                        class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl "
-                        
+                        class="inner w-[98%] border-alternate-text-color text-alternate-text-color text-description border-2 p-3 rounded-xl"
                       >
-                      <div class="overflow-y-auto custom-scrollbar" style="height: 85px">
-                        نساعدك في اختيار التخصص و الجامعة المناسبة لمهاراتك و
-                        طموحاتك
-                        نساعدك في اختيار التخصص و الجامعة المناسبة لمهاراتك و
-                        طموحاتك
-                      </div>
+                        <div
+                          class="overflow-y-auto custom-scrollbar"
+                          style="height: 85px"
+                        >
+                          نساعدك في اختيار التخصص و الجامعة المناسبة لمهاراتك و
+                          طموحاتك نساعدك في اختيار التخصص و الجامعة المناسبة
+                          لمهاراتك و طموحاتك
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1785,7 +1798,13 @@
       >
         <!-- Footer Background Image -->
         <img
-          src="../assets/images/footer/foater.webp"
+          src="../assets/images/footer/footer-750x400.webp"
+          srcset="
+            ../assets/images/footer/footer-750x400.webp   750w,
+            ../assets/images/footer/footer-1260x500.webp 1260w,
+            ../assets/images/footer/footer-1300x600.webp 1300w
+          "
+          sizes="(max-width: 768px) 100vw, 1300px"
           role="presentation"
           class="absolute inset-0 w-full rounded-ss-[100px] h-full object-cover"
           loading="lazy"
@@ -1813,7 +1832,7 @@
 
         <div class="container px-5 relative z-20 text-center md:text-start">
           <div
-            class="grid grid-cols-1  md:grid-cols-3 xl:grid-cols-4 gap-y-8 gap-x-24"
+            class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-y-8 gap-x-24"
           >
             <!-- About Edugate -->
             <div class="about-edugate flex items-center">
