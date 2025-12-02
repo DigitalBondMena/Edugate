@@ -93,12 +93,12 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
     &::before {
       content: "";
       position: absolute;
-      bottom: 0;
-      inset-inline-start: 0;
+      bottom: -10px;
+      inset-inline-end: 0;
       width: 50%;
-      height: 5px;
+      height: 6px;
       background-color: var(--color-primary-text-color);
-      border-radius: 10px;
+      border-radius: 999px;
       transition: left 0.3s, right 0.3s;
     }
   }
@@ -146,21 +146,20 @@ html[dir="rtl"] .dynamic-inputs-container:not(:has(> div:not(.hidden)))::after {
         }
       }
       .iti__country-list {
-        @apply left-0 w-72 md:w-[670px] lg:w-[835px] xl:w-[360px] 2xl:w-[497px]
+        @apply left-0
       }
       .iti__country-list {
-      @media (width >= 48rem) {
+        width: 250px;
+      @media (width >= 640px) {
         width: 400px;
       }
       @media (width >= 64rem) {
-        width: 430px;
+        width: 380px;
       }
       @media (width >= 80rem) {
-        width: 570px;
+        width: 515px;
       }
-      @media (width >= 96rem) {
-        width: 790px;
-      }
+      
     }
   }
   .main-description-ui {
