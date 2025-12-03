@@ -34,7 +34,6 @@ class LoadingScreenManager {
       window.addEventListener("load", this.close());
     }
   }
-
   close() {
     if (this.loadingScreen) {
       this.loadingScreen.classList.add("hidden");

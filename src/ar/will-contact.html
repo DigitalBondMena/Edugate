@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success! - Education Platform</title>
+    <link rel="stylesheet" href="../assets/style/style.css" />
+    
+    <style>
+      :root {
+        --color-primary-text-color: #1cb280;
+        --color-alternate-text-color: #839992;
+        --color-active-color: #f64148;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      }
+
+      .success-animation {
+        animation: successScale 0.6s ease-out forwards;
+        opacity: 0;
+      }
+
+      @keyframes successScale {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        opacity: 0;
+      }
+
+      .checkmark-circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+      }
+
+      .checkmark {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        margin: 10% auto;
+        animation: fill 0.4s ease-in-out 0.4s forwards,
+          scale 0.3s ease-in-out 0.9s both;
+      }
+
+      .checkmark-check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+      }
+
+      @keyframes stroke {
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes scale {
+        0%,
+        100% {
+          transform: none;
+        }
+        50% {
+          transform: scale3d(1.1, 1.1, 1);
+        }
+      }
+
+      @keyframes fill {
+        100% {
+          box-shadow: inset 0px 0px 0px 60px #1cb280;
+        }
+      }
+
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(28, 178, 128, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(28, 178, 128, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(28, 178, 128, 0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .fade-in-up-delay {
+        animation: fadeInUp 0.8s ease-out 0.3s forwards;
+        opacity: 0;
+      }
+
+      .fade-in-up-delay-2 {
+        animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .confetti-animation {
+        animation: confettiRain 5s infinite;
+      }
+
+      @keyframes confettiRain {
+        0% {
+          opacity: 1;
+          margin-top: -100px;
+        }
+        100% {
+          opacity: 0;
+          margin-top: 1000px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Confetti Animation -->
+    <div
+      id="confetti-container"
+      class="fixed inset-0 pointer-events-none z-0"
+    ></div>
+
+    <div class="max-w-4xl w-full success-animation mx-auto min-h-screen flex items-center justify-center">
+      <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div class="md:flex items-center">
+          <!-- Left Column - Illustration -->
+          <div
+            class="md:w-2/5 bg-linear-to-br from-primary-text-color to-[#0d8a63] p-8 md:p-12 flex flex-col justify-center items-center text-white"
+          >
+            <div class="relative mb-8 w-28 h-28">
+              <div
+                class="absolute inset-0 bg-white rounded-full pulse-animation opacity-30"
+              ></div>
+              <div class="relative bg-white rounded-full p-6">
+                <svg
+                  class="checkmark"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 52 52"
+                >
+                  <circle
+                    class="checkmark-circle"
+                    cx="26"
+                    cy="26"
+                    r="25"
+                    fill="none"
+                  />
+                  <path
+                    class="checkmark-check"
+                    fill="none"
+                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-center mb-4">
+                شكرا لتواصلك مع Edugate
+            </h2>
+            <p class="text-center text-white/90 mb-8">
+                تم تسجيل طلبك بنجاح سيتم التواصل معك في اقرب وقت من احد ممثلي خدمة العملاء
+            </p>
+
+            <div class="mt-8 floating fill-white/80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="48" viewBox="0 0 640 640">
+                <path d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z"/>
+            </svg>
+            </div>
+          </div>
+
+          <!-- Right Column - Content -->
+          <div class="md:w-3/5 p-8 md:p-12">
+            <div class="flex justify-between items-start mb-2">
+              <h1 class="text-3xl font-bold text-gray-800">تم تسجيل طلبك</h1>
+              <div
+                class="bg-green-50 text-primary-text-color fill-primary-text-color text-sm font-semibold px-3 py-1 rounded-full flex items-center gap-1"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 640 640"
+                >
+                  <path
+                    d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM438 209.7C427.3 201.9 412.3 204.3 404.5 215L285.1 379.2L233 327.1C223.6 317.7 208.4 317.7 199.1 327.1C189.8 336.5 189.7 351.7 199.1 361L271.1 433C276.1 438 282.9 440.5 289.9 440C296.9 439.5 303.3 435.9 307.4 430.2L443.3 243.2C451.1 232.5 448.7 217.5 438 209.7z"
+                  />
+                </svg>
+                <span>مقبول</span>
+              </div>
+            </div>
+
+            <p class="text-alternate-text-color mb-8 fade-in-up">
+              نم تسجيل طلبك و سيتم التواصل معك في اقرب
+            </p>
+
+            <!-- Success Details -->
+            <div class="space-y-6 fade-in-up-delay">
+              <!-- Enrollment Details -->
+              <!-- <div
+                class="bg-gray-50 rounded-xl p-5 border-l-4 border-primary-text-color"
+              >
+                <h3
+                  class="font-bold text-gray-800 fill-primary-text-color mb-3 flex items-center gap-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM288 224C288 206.3 302.3 192 320 192C337.7 192 352 206.3 352 224C352 241.7 337.7 256 320 256C302.3 256 288 241.7 288 224zM280 288L328 288C341.3 288 352 298.7 352 312L352 400L360 400C373.3 400 384 410.7 384 424C384 437.3 373.3 448 360 448L280 448C266.7 448 256 437.3 256 424C256 410.7 266.7 400 280 400L304 400L304 336L280 336C266.7 336 256 325.3 256 312C256 298.7 266.7 288 280 288z"
+                    />
+                  </svg>
+                  <span>بيناتك للتسجيل</span>
+                </h3>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p class="text-sm text-alternate-text-color">Email</p>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        readonly
+                        id="passInput"
+                        class="main-input py-2!"
+                        value="csdc@sdcd.csdc"
+                      />
+                      <button
+                        type="button"
+                        data-target="passInput"
+                        aria-label="copy email"
+                        class="absolute end-3 copy-btn top-1/2 -translate-y-1/2 cursor-pointer fill-alternate-text-color hover:fill-primary-text-color"
+                        title="copy"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 640 640"
+                        >
+                          <path
+                            d="M288 64C252.7 64 224 92.7 224 128L224 384C224 419.3 252.7 448 288 448L480 448C515.3 448 544 419.3 544 384L544 183.4C544 166 536.9 149.3 524.3 137.2L466.6 81.8C454.7 70.4 438.8 64 422.3 64L288 64zM160 192C124.7 192 96 220.7 96 256L96 512C96 547.3 124.7 576 160 576L352 576C387.3 576 416 547.3 416 512L416 496L352 496L352 512L160 512L160 256L176 256L176 192L160 192z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="text-sm text-alternate-text-color">Password</p>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        id="emailInput"
+                        readonly
+                        class="main-input py-2!"
+                        value="ascasdcadca"
+                        />
+                        <button
+                        data-target="emailInput"
+                        type="button"
+                        aria-label="copy email"
+                        class="absolute copy-btn end-3 top-1/2 -translate-y-1/2 cursor-pointer fill-alternate-text-color hover:fill-primary-text-color"
+                        title="copy"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 640 640"
+                        >
+                          <path
+                            d="M288 64C252.7 64 224 92.7 224 128L224 384C224 419.3 252.7 448 288 448L480 448C515.3 448 544 419.3 544 384L544 183.4C544 166 536.9 149.3 524.3 137.2L466.6 81.8C454.7 70.4 438.8 64 422.3 64L288 64zM160 192C124.7 192 96 220.7 96 256L96 512C96 547.3 124.7 576 160 576L352 576C387.3 576 416 547.3 416 512L416 496L352 496L352 512L160 512L160 256L176 256L176 192L160 192z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div> -->
+
+              <!-- Next Steps -->
+              <!-- <div>
+                <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                  <i class="fas fa-list-check text-primary-text-color mr-2"></i>
+                  Next Steps
+                </h3>
+                <div class="space-y-4">
+                  <div class="flex items-start">
+                    <div
+                      class="shrink-0 h-8 w-8 rounded-full bg-primary-text-color/10 flex items-center justify-center mr-3"
+                    >
+                      <span class="text-primary-text-color font-bold">1</span>
+                    </div>
+                    <div>
+                      <p class="font-medium">
+                        Check your email for confirmation
+                      </p>
+                      <p class="text-sm text-alternate-text-color">
+                        We've sent you detailed course information
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div
+                      class="shrink-0 h-8 w-8 rounded-full bg-primary-text-color/10 flex items-center justify-center mr-3"
+                    >
+                      <span class="text-primary-text-color font-bold">2</span>
+                    </div>
+                    <div>
+                      <p class="font-medium">Access your learning dashboard</p>
+                      <p class="text-sm text-alternate-text-color">
+                        Start with the introductory module
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div
+                      class="shrink-0 h-8 w-8 rounded-full bg-primary-text-color/10 flex items-center justify-center mr-3"
+                    >
+                      <span class="text-primary-text-color font-bold">3</span>
+                    </div>
+                    <div>
+                      <p class="font-medium">Join the community</p>
+                      <p class="text-sm text-alternate-text-color">
+                        Connect with instructors and peers
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div
+              class="mt-10 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4 fade-in-up-delay-2 "
+            >
+              <a
+                href="./index.html"
+                class="flex-1 gap-1 bg-primary-text-color hover:bg-[#17a073] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 text-center shadow-md hover:shadow-lg flex items-center justify-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 640 640">
+                    <path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z"/>
+                </svg>
+                <span>العوده للصفحه الرئيسية</span>
+              </a>
+            </div>
+
+            <!-- Additional Info -->
+            <!-- <div class="mt-8 pt-6 border-t border-gray-200 fade-in-up-delay-2">
+              <p class="text-sm text-alternate-text-color text-center">
+                Need help?
+                <a
+                  href="#"
+                  class="text-primary-text-color font-medium hover:underline"
+                  >Contact our support team</a
+                >
+                or visit our
+                <a
+                  href="#"
+                  class="text-primary-text-color font-medium hover:underline"
+                  >help center</a
+                >.
+              </p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Create confetti animation
+      document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.getElementById("confetti-container");
+        const colors = ["#1cb280", "#f64148", "#839992", "#0d8a63", "#ffc107"];
+
+        // Create confetti elements
+        for (let i = 0; i < 80; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti confetti-animation";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.width = Math.random() * 10 + 5 + "px";
+          confetti.style.height = Math.random() * 10 + 5 + "px";
+          confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "0";
+          confetti.style.animationDelay = Math.random() * 5 + "s";
+          confetti.style.animationDuration = Math.random() * 3 + 3 + "s";
+          confettiContainer.appendChild(confetti);
+        }
+
+        // Add success sound effect simulation
+        const successSound = () => {
+          // In a real implementation, you would play an audio file
+          console.log("Success sound played!");
+        };
+
+        // Trigger animations on page load
+        setTimeout(successSound, 300);
+
+        // Add hover effect to main card
+        const mainCard = document.querySelector(".max-w-4xl");
+        mainCard.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-5px)";
+          this.style.transition = "transform 0.3s ease";
+        });
+
+        mainCard.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+        });
+      });
+      document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const inputId = btn.dataset.target;
+          const input = document.getElementById(inputId);
+          console.log(input);
+
+          navigator.clipboard.writeText(input.value).then(() => {
+            const cashedBtnInner = btn.innerHTML;
+            btn.innerHTML = `<svg class="fill-primary-text-color" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 640 640">
+                                <path d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM438 209.7C427.3 201.9 412.3 204.3 404.5 215L285.1 379.2L233 327.1C223.6 317.7 208.4 317.7 199.1 327.1C189.8 336.5 189.7 351.7 199.1 361L271.1 433C276.1 438 282.9 440.5 289.9 440C296.9 439.5 303.3 435.9 307.4 430.2L443.3 243.2C451.1 232.5 448.7 217.5 438 209.7z"></path>
+                            </svg>`;
+            setTimeout(() => {
+              btn.innerHTML = cashedBtnInner;
+            }, 1000);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

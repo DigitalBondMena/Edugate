@@ -829,11 +829,12 @@
                 <div
                   class="flex items-center justify-center lg:justify-start gap-x-3 mt-4"
                 >
-                  <p
+                  <a
+                  href="./contact-us/index.html"
                     class="bg-white text-primary-text-color py-1 px-1.5 rounded-[25px]"
                   >
                     انطلق بخطوتك الأولى معنا
-                  </p>
+                  </a>
                   <img
                     src="../assets/images/home/hero/arrow.svg"
                     decoding="async"
@@ -1809,8 +1810,6 @@
           class="absolute inset-0 w-full rounded-ss-[100px] h-full object-cover"
           loading="lazy"
           decoding="async"
-          width="1920"
-          height="600"
         />
         <div
           class="bg-white text-end p-3 rounded-e-full relative w-full mb-6 md:mb-0 max-w-[300px] z-10 start-0 py-3"
@@ -2219,5 +2218,14 @@
         });
       }
     </script> -->
+    <!-- fallback images -->
+    <script>
+    Array.from(document.images).forEach(img => {
+      img.addEventListener("error", element => {
+        element.target.src = '../assets/images/Webp-Dimensions/fallback.webp'
+        element.target.style = 'object-fit:contain'
+      })
+    })
+    </script>
   </body>
 </html>

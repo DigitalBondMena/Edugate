@@ -88,6 +88,24 @@
           }
         }
       }
+      /* h6 inside parent */
+.service-wrapper h6 {
+  color: #D0D0D0;
+}
+
+.service-wrapper figure {
+  background-color: #D0D0D0;
+  transition: all 200ms;
+}
+
+.service-wrapper .inner:hover h6 {
+  color: var(--color-primary-text-color);
+}
+
+.service-wrapper .inner:hover figure {
+  background-color: var(--color-primary-text-color);
+}
+
     </style>
     <title>Edugate - بوابتك للتعليم الدولي</title>
   </head>
@@ -711,24 +729,23 @@
       </section>
 
       <!-- ================== Services Section ================== -->
-      <section class="py-[200px]">
+      <section class="py-20 lg:pt-52">
         <div class="container">
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-y-5 gap-x-3">
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-y-5 gap-x-3 service-wrapper">
             <!-- Item 1 -->
-
-            <div class="inner">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/2.svg"
-                  alt="logo" />
-              </figure>
-              <h6
-                class="text-primary-text-color text-center font-bold text-description pt-5 pb-3">
-                استشارات تعليمية
-              </h6>
+            <div class="inner  ">
+                <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/2.svg"
+                    alt="logo" width="150"
+                    />
+                </figure>
+                <h6
+                  class="text-center font-bold text-description pt-5 pb-3 ">
+                  استشارات تعليمية
+                </h6>
               <p
                 class="text-alternate-text-color leading-10 text-center font-light">
                 ممارات تعليمية نقدم لك مجموعة متكاملة من الخدمات التعليمية
@@ -738,13 +755,13 @@
 
             <!-- Item 2 -->
             <div class="inner">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/6.svg"
-                  alt="logo" />
-              </figure>
+              <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/1.svg"
+                    alt="logo" width="150" 
+                    />
+                </figure>
               <h6
                 class="text-[#D0D0D0] text-center font-bold text-description pt-5 pb-3">
                 قبولات جامعية
@@ -758,13 +775,13 @@
 
             <!-- Item 3 -->
             <div class="inner">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/5.svg"
-                  alt="logo" />
-              </figure>
+              <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/2.svg"
+                    alt="logo" width="150" 
+                    />
+                </figure>
               <h6
                 class="text-[#D0D0D0] text-center font-bold text-description pt-5 pb-3">
                 قبولات اللغه
@@ -778,13 +795,13 @@
 
             <!-- Item 4 -->
             <div class="inner">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/1.svg"
-                  alt="logo" />
-              </figure>
+              <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/2.svg"
+                    alt="logo" width="150" 
+                    />
+                </figure>
               <h6
                 class="text-[#D0D0D0] text-center font-bold text-description pt-5 pb-3">
                 معادله الشهاده العلميه دوليا
@@ -798,13 +815,13 @@
 
             <!-- Item 5 -->
             <div class="inner">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/4.svg"
-                  alt="logo" />
-              </figure>
+              <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/2.svg"
+                    alt="logo" width="150" 
+                    />
+                </figure>
               <h6
                 class="text-[#D0D0D0] text-center font-bold text-description pt-5 pb-3">
                 حلول وبدائل أكاديمية مميزة
@@ -818,13 +835,13 @@
 
             <!-- Item 6 -->
             <div class="inner">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/7.svg"
-                  alt="logo" />
-              </figure>
+              <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/2.svg"
+                    alt="logo" width="150" 
+                    />
+                </figure>
               <h6
                 class="text-[#D0D0D0] text-center font-bold text-description pt-5 pb-3">
                 معارض تعليميه
@@ -838,13 +855,13 @@
 
             <!-- Item 7 -->
             <div class="inner lg:col-start-2">
-              <figure>
-                <img
-                  class="w-[200px] mx-auto"
-                  loading="lazy"
-                  src="../../assets/images/services/3.svg"
-                  alt="logo" />
-              </figure>
+              <figure class=" w-[200px] h-[200px] mx-auto rounded-full flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src="../../assets/images/services/2.svg"
+                    alt="logo" width="150" 
+                    />
+                </figure>
               <h6
                 class="text-[#D0D0D0] text-center font-bold text-description pt-5 pb-3">
                 تنسيق البرامج التعليمية
